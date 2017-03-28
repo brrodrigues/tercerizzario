@@ -1,0 +1,8 @@
+spring: 
+  application: 
+    name: TercerizzarioServer
+  cloud: 
+      config: 
+        uri: ${HOSTNAME:http://localhost:8888}
+
+debug: true
