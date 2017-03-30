@@ -5,7 +5,6 @@
         <groupId>tercerizzario</groupId>
         <artifactId>tercerizzario-service</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
     </parent>
     <groupId>tercerizzario</groupId>
     <artifactId>tercerizzario-service-supplier</artifactId>
