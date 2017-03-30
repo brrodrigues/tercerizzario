@@ -10,9 +10,14 @@ package tercerizzario.service.supplier.service;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,19 +50,19 @@ public class SupplierService {
 //        return "Foi";
     }
 
-//    @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
-//    public Supplier getOne(@PathParam(value = "id") String id) {
-//        return supplierRepository.findOne(id);
-//    }
+    @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
+    public Supplier getOne(@PathVariable(value = "id") String id) {
+        return supplierRepository.findOne(id);
+    }
+
+    @RequestMapping(method = {RequestMethod.PUT})
+    public Supplier saveSupplier(@RequestBody Supplier supplier) {
+        return supplierRepository.saveAndFlush(supplier);
+    }
 //
-//    @RequestMapping(method = {RequestMethod.PUT})
-//    public Supplier saveSupplier(@RequestBody Supplier supplier) {
-//        return supplierRepository.saveAndFlush(supplier);
-//    }
-//
-//    @RequestMapping(value = "/{id}", method = {RequestMethod.DELETE})
-//    public ResponseEntity delete(@PathParam(value = "id") String id) {
-//        supplierRepository.delete(id);
-//        return new ResponseEntity("OK", HttpStatus.ACCEPTED);
-//    }
+    @RequestMapping(value = "/{id}", method = {RequestMethod.DELETE})
+    public ResponseEntity delete(@PathVariable(value = "id") String id) {
+        supplierRepository.delete(id);
+        return new ResponseEntity("OK", HttpStatus.ACCEPTED);
+    }
 }

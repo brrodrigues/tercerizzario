@@ -19,13 +19,11 @@ public class Supplier implements Serializable {
     @Id
     private String id;
     private String name;
+    private String cellPhone;
+    private String address;
+    private String document;
 
     public Supplier() {
-    }
-
-    public Supplier(String id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public String getId() {
@@ -42,6 +40,30 @@ public class Supplier implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
     }
 
 }
