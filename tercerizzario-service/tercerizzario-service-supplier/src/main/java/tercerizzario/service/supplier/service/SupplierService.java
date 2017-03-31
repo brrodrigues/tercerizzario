@@ -8,7 +8,6 @@ package tercerizzario.service.supplier.service;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -26,7 +25,8 @@ import tercerizzario.service.supplier.jpa.repository.SupplierRepository;
  *
  * @author bruno
  */
-@RestController("/suppliers")
+@RestController
+@RequestMapping("/suppliers")
 public class SupplierService {
 
     private static final Logger LOG = Logger.getLogger(SupplierService.class.getName());
@@ -43,9 +43,14 @@ public class SupplierService {
         ServiceInstance localServiceInstance = client.getLocalServiceInstance();
         LOG.log(Level.INFO, "Call /suppliers from {0}:{1} ", new Object[]{localServiceInstance.getHost(), localServiceInstance
             .getPort()});
-        
+
         return supplierRepository.findAll();
 //        return "Foi";
+    }
+
+    @RequestMapping(method = {RequestMethod.POST})
+    public Supplier createOne(@RequestBody Supplier supplier) {
+        return supplierRepository.saveAndFlush(supplier);
     }
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
@@ -58,6 +63,7 @@ public class SupplierService {
         return supplierRepository.saveAndFlush(supplier);
     }
 //
+
     @RequestMapping(value = "/{id}", method = {RequestMethod.DELETE})
     public ResponseEntity delete(@PathVariable(value = "id") String id) {
         supplierRepository.delete(id);

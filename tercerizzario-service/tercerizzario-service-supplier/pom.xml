@@ -8,6 +8,7 @@
     </parent>
     <groupId>tercerizzario</groupId>
     <artifactId>tercerizzario-service-supplier</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>tercerizzario:service-supplier</name>
     
