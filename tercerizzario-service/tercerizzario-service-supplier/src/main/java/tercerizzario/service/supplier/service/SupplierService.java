@@ -45,7 +45,6 @@ public class SupplierService {
             .getPort()});
 
         return supplierRepository.findAll();
-//        return "Foi";
     }
 
     @RequestMapping(method = {RequestMethod.POST})

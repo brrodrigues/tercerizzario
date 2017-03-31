@@ -13,16 +13,6 @@ spring:
         database: H2
         show_sql: true
         
-zuul:
-    routes:
-        suppliers:
-            url:
-                http://localhost:${server.port}/suppliers
-    
-ribbon:
-    eureka:
-        enabled:
-            false
 server:
     port: 7111
     

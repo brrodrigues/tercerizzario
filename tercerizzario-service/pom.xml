@@ -14,6 +14,7 @@
     <modules>
         <module>tercerizzario-service-supplier</module>
         <module>tercerizzario-service-server</module>
+        <module>tercerizzario-gateway</module>
     </modules>
     <properties>
         <java.version>8</java.version>
