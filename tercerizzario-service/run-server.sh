@@ -7,10 +7,15 @@ SERVICE="tercerizzario-service-${PROJECT_NAME}"
 LOG_RUN="~/app/logs/$SERVICE.log"
 LOG_COMPILE_MAVEN="~/app/logs/${SERVICE}_mvn_compile.log"
 
+echo 'FINDING LOCATION PATH'
+if [ ! -f ~/app/logs ]; then
+   echo 'CREATING...'
+   mkdir -p ~/app/logs
+fi
 
 echo "COMPILING PROJECT WITH MAVEN"
 
-rm $LOG_COMPILE_MAVEN >> /dev/null
+rm $LOG_COMPILE_MAVEN
 
 cd ${SERVICE}
 

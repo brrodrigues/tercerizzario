@@ -14,7 +14,7 @@
     <name>tercerizzario:service-supplier</name>
     
     <properties>
-        <start-class>tercerizzario.service.supplier.SupplierClientApplication</start-class>
+        <start-class>tercerizzario.service.supplier.SupplierApp</start-class>
     </properties>
     
     <dependencies>

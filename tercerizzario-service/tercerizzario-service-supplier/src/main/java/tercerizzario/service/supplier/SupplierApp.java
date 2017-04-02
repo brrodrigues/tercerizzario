@@ -15,10 +15,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class SupplierClientApplication {
+public class SupplierApp {
 
     public static void main(String... args) {
-        SpringApplication.run(SupplierClientApplication.class, args);
+        SpringApplication.run(SupplierApp.class, args);
     }
 
 }
