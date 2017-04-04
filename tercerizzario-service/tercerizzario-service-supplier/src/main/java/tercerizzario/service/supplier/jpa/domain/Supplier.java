@@ -6,14 +6,14 @@
 package tercerizzario.service.supplier.jpa.domain;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  * @author bruno
  */
-@Entity
+@Document
 public class Supplier implements Serializable {
 
     @Id

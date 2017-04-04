@@ -49,7 +49,7 @@ public class SupplierService {
 
     @RequestMapping(method = {RequestMethod.POST})
     public Supplier createOne(@RequestBody Supplier supplier) {
-        return supplierRepository.saveAndFlush(supplier);
+        return supplierRepository.insert(supplier);
     }
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
@@ -58,14 +58,14 @@ public class SupplierService {
     }
 
     @RequestMapping(method = {RequestMethod.PUT})
-    public Supplier saveSupplier(@RequestBody Supplier supplier) {
-        return supplierRepository.saveAndFlush(supplier);
+    public Supplier updateSupplier(@RequestBody Supplier supplier) {
+        return supplierRepository.insert(supplier);
     }
 //
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.DELETE})
     public ResponseEntity delete(@PathVariable(value = "id") String id) {
         supplierRepository.delete(id);
-        return new ResponseEntity("OK", HttpStatus.ACCEPTED);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 }
