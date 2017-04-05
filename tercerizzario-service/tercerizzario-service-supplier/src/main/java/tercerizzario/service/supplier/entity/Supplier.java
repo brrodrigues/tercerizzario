@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tercerizzario.service.supplier.jpa.domain;
+package tercerizzario.service.supplier.entity;
 
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;

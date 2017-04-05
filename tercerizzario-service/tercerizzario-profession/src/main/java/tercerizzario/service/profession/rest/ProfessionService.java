@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tercerizzario.service.supplier.service;
+package tercerizzario.service.profession.rest;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -12,60 +12,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
+import static org.springframework.http.RequestEntity.method;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import tercerizzario.service.supplier.jpa.domain.Supplier;
-import tercerizzario.service.supplier.jpa.repository.SupplierRepository;
+import tercerizzario.service.profession.entity.Profession;
+import tercerizzario.service.profession.repository.ProfessionRepository;
 
 /**
  *
  * @author bruno
  */
 @RestController
-@RequestMapping("/suppliers")
-public class SupplierService {
+public class ProfessionService {
 
-    private static final Logger LOG = Logger.getLogger(SupplierService.class.getName());
+    private static final Logger LOG = Logger.getLogger(ProfessionService.class.getName());
 
     @Autowired
     private DiscoveryClient client;
 
     @Autowired
-    private SupplierRepository supplierRepository;
+    private ProfessionRepository repository;
 
     @RequestMapping(method = {RequestMethod.GET})
-    public List<Supplier> getSuppliers() {
+    public List<Profession> getSuppliers() {
 
         ServiceInstance localServiceInstance = client.getLocalServiceInstance();
         LOG.log(Level.INFO, "Call /suppliers from {0}:{1} ", new Object[]{localServiceInstance.getHost(), localServiceInstance
             .getPort()});
 
-        return supplierRepository.findAll();
+        return repository.findAll();
     }
 
     @RequestMapping(method = {RequestMethod.POST})
-    public Supplier createOne(@RequestBody Supplier supplier) {
-        return supplierRepository.insert(supplier);
+    public Profession createOne(@RequestBody Profession profession) {
+        return repository.insert(profession);
     }
 
-    @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
-    public Supplier getOne(@PathVariable(value = "id") String id) {
-        return supplierRepository.findOne(id);
+    @RequestMapping(value = {"/{id}", "/?name"}, method = {RequestMethod.GET})
+    public Profession getOne(@PathVariable(value = "id") String id, @PathVariable(value = "name") String name) {
+        return repository.findOne(id);
     }
 
     @RequestMapping(method = {RequestMethod.PUT})
-    public Supplier updateSupplier(@RequestBody Supplier supplier) {
-        return supplierRepository.insert(supplier);
+    public Profession updateSupplier(@RequestBody Profession profession) {
+        return repository.insert(profession);
     }
 //
 
-    @RequestMapping(value = "/{id}", method = {RequestMethod.DELETE})
+    @RequestMapping(value = "/?{id}", method = {RequestMethod.DELETE})
     public ResponseEntity delete(@PathVariable(value = "id") String id) {
-        supplierRepository.delete(id);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        repository.delete(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
 }

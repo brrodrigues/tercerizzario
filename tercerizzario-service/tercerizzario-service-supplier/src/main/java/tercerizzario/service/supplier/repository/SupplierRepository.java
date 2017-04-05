@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor. 
  */
-package tercerizzario.service.supplier.jpa.repository;
+package tercerizzario.service.supplier.repository;
 
 import java.util.Collection;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import org.springframework.data.repository.query.Param;
-import tercerizzario.service.supplier.jpa.domain.Supplier;
+import tercerizzario.service.supplier.entity.Supplier;
 
 /**
  *

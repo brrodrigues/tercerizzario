@@ -1,13 +1,12 @@
 spring:
     application:
-        name: supplier-resource
+        name: profession-resource
     data:
        mongodb:
            uri: mongodb://localhost:27017
                
-    
 server:
-    port: 7111
+    port: 7211
     
 eureka: 
   client: 
