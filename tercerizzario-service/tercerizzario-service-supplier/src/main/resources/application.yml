@@ -2,7 +2,6 @@ spring:
     application:
         name: supplier-resource
     
-        
 server:
     port: 7111
     
@@ -10,7 +9,7 @@ eureka:
   client: 
       registerWithEureka: true
       serviceUrl:
-        defaultZone: http://${HOSTNAME}:localhost:8761/eureka/
+        defaultZone: http://localhost:8761/eureka/
   instance: 
     leaseRenewalIntervalInSeconds: 10
     metadataMap: 
