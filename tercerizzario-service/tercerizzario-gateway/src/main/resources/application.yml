@@ -4,6 +4,9 @@ zuul:
         supplier-resource:
             path: /suppliers/**
             url: http://localhost:7111/suppliers
+        profession-resource:
+            path: /professions/**
+            url: http://localhost:7211/professions
 ribbon:
     eureka:
         enabled: false
@@ -18,6 +21,9 @@ server:
 supplier-resource:
     ribbon:
         listOfServers: http://localhost:7111/
+profession-resource:
+    ribbon:
+        listOfServers: http://localhost:7211/
         
 logging:
   level:
