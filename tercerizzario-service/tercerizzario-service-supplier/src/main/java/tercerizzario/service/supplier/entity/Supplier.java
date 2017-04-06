@@ -7,6 +7,7 @@ package tercerizzario.service.supplier.entity;
 
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -21,6 +22,8 @@ public class Supplier implements Serializable {
     private String name;
     private String cellPhone;
     private String address;
+    @Indexed
+    private String email;
     private String document;
 
     public Supplier() {
@@ -56,6 +59,14 @@ public class Supplier implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getDocument() {

@@ -17,7 +17,7 @@ import tercerizzario.service.supplier.entity.Supplier;
  */
 public interface SupplierRepository extends MongoRepository<Supplier, String> {
 
-    public Collection<Supplier> findByName(String name);
+    public Collection<Supplier> findByName(@Param(value = "name") String name);
 
     public Collection<Supplier> findByAddress(@Param(value = "address") String address);
 }
