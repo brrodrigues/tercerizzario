@@ -3,7 +3,7 @@ spring:
         name: profession-resource
     data:
        mongodb:
-           uri: mongodb://localhost:27017
+           uri: mongodb://localhost:27017/tercerizzario
                
 server:
     port: 7211
