@@ -7,14 +7,17 @@ package tercerizzario.service.profession.repository;
 
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import tercerizzario.service.profession.entity.Profession;
 
 /**
  *
  * @author bruno
  */
-public interface ProfessionRepository extends MongoRepository<Profession, String>{
-    
-    public List<Profession> findByName(String name);
-    
+@RepositoryRestResource(collectionResourceRel = "profession", path = "professions")
+public interface ProfessionRepository extends MongoRepository<Profession, String> {
+
+    public List<Profession> findByName(@Param(value = "name") String name);
+
 }

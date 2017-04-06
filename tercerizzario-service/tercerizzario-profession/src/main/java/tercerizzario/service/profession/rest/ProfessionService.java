@@ -26,18 +26,19 @@ import tercerizzario.service.profession.repository.ProfessionRepository;
  *
  * @author bruno
  */
-@RestController
+//@RestController
+//@RequestMapping("/professions")
 public class ProfessionService {
 
     private static final Logger LOG = Logger.getLogger(ProfessionService.class.getName());
 
-    @Autowired
+//    @Autowired
     private DiscoveryClient client;
 
-    @Autowired
+//    @Autowired
     private ProfessionRepository repository;
 
-    @RequestMapping(method = {RequestMethod.GET})
+//    @RequestMapping(method = {RequestMethod.GET})
     public List<Profession> getSuppliers() {
 
         ServiceInstance localServiceInstance = client.getLocalServiceInstance();
@@ -47,23 +48,23 @@ public class ProfessionService {
         return repository.findAll();
     }
 
-    @RequestMapping(method = {RequestMethod.POST})
+//    @RequestMapping(method = {RequestMethod.POST})
     public Profession createOne(@RequestBody Profession profession) {
         return repository.insert(profession);
     }
 
-    @RequestMapping(value = {"/{id}", "/?name"}, method = {RequestMethod.GET})
-    public Profession getOne(@PathVariable(value = "id") String id, @PathVariable(value = "name") String name) {
-        return repository.findOne(id);
-    }
+//    @RequestMapping(value = {"/{id}", "/?name"}, method = {RequestMethod.GET})
+//    public Profession getOne(@PathVariable(value = "id") String id, @PathVariable(value = "name") String name) {
+//        return repository.findOne(id);
+//    }
 
-    @RequestMapping(method = {RequestMethod.PUT})
+//    @RequestMapping(method = {RequestMethod.PUT})
     public Profession updateSupplier(@RequestBody Profession profession) {
         return repository.insert(profession);
     }
 //
 
-    @RequestMapping(value = "/?{id}", method = {RequestMethod.DELETE})
+//    @RequestMapping(value = "/?{id}", method = {RequestMethod.DELETE})
     public ResponseEntity delete(@PathVariable(value = "id") String id) {
         repository.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
