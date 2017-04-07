@@ -8,18 +8,28 @@
         <relativePath/>
     </parent> 
     <groupId>tercerizzario</groupId>
-    <artifactId>tercerizzario-service-supplier</artifactId>
+    <artifactId>tercerizzario-service-profession</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>tercerizzario:service-supplier</name>
+    <name>tercerizzario:service-profession</name>
+    <description>Provider prefession microservice</description>
     
     <properties>
-        <start-class>tercerizzario.service.supplier.SupplierApp</start-class>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+                <start-class>tercerizzario.service.profession.ProfessionApp</start-class>
     </properties>
-    
+        
     <dependencies>
+<!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -48,15 +58,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/hsqldb/hsqldb -->
-        <!--        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -73,6 +74,11 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-rest-core</artifactId>
+            <type>jar</type>
+        </dependency>-->
+<!--        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-rest-core</artifactId>
             <type>jar</type>
@@ -115,5 +121,5 @@
         </plugins>
     </build>
     
-    <description>Provider supplier microservice</description>
+    
 </project>

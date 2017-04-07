@@ -3,30 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tercerizzario.service.supplier.jpa.domain;
+package tercerizzario.service.profession.entity;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  * @author bruno
  */
-@Entity
-public class Supplier implements Serializable {
+@Document
+public class Profession {
 
     @Id
     private String id;
+    @Indexed
     private String name;
-
-    public Supplier() {
-    }
-
-    public Supplier(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public String getId() {
         return id;

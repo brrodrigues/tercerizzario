@@ -1,0 +1,39 @@
+zuul:
+    ignoreServices: "*"
+    routes:
+        supplier-resource:
+            path: /suppliers/**
+            url: http://localhost:7111/suppliers
+        profession-resource:
+            path: /professions/**
+            url: http://localhost:7211/professions
+ribbon:
+    eureka:
+        enabled: false
+        
+server:
+    port: 8080
+    
+#eureka:
+#    serviceUrl:
+#        default=http://localhost:8761/eureka/
+
+supplier-resource:
+    ribbon:
+        listOfServers: http://localhost:7111/
+profession-resource:
+    ribbon:
+        listOfServers: http://localhost:7211/
+        
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG        
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false

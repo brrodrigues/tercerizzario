@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>tercerizzario</groupId>
-        <artifactId>tercerizzario-frontend</artifactId>
+        <artifactId>tercerizzario-ui</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>tercerizzario-customer-android</artifactId>
