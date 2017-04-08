@@ -22,7 +22,7 @@ public class Supplier implements Serializable {
     private String name;
     private String cellPhone;
     private String address;
-    @Indexed
+    @Indexed(unique = true)
     private String email;
     private String document;
 
