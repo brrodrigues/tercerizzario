@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tercerizzario.service.supplier.entity.Supplier;
 import tercerizzario.service.supplier.repository.DefaultRepository;
-import tercerizzario.service.supplier.repository.SupplierRepositoryCustom;
 
 /**
  *
@@ -38,9 +37,6 @@ public class SupplierService {
 
     @Autowired
     private DefaultRepository defaultRepository;
-
-    @Autowired
-    private SupplierRepositoryCustom supplierRepositoryCustom;
 
     @RequestMapping(method = {RequestMethod.GET})
     public List<Supplier> getSuppliers() {
