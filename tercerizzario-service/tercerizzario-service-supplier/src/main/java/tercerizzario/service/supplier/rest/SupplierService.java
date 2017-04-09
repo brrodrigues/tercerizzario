@@ -14,10 +14,10 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tercerizzario.service.supplier.entity.Supplier;
 import tercerizzario.service.supplier.repository.DefaultRepository;
@@ -58,7 +58,7 @@ public class SupplierService {
     }
 
     @RequestMapping(value = "/search/byEmail", method = {RequestMethod.GET})
-    public Supplier findByEmail(@RequestAttribute(name = "email", required = true) String email) {
+    public Supplier findByEmail(@RequestParam(name = "email", required = true) String email) {
         return defaultRepository.findFirstByEmail(email);
     }
 
