@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         botaoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentVaiParaCadastroPrestador = new Intent(MainActivity.this, CadastroPrestadorActivity.class);
-                startActivity(intentVaiParaCadastroPrestador);
+                Intent intentVaiParaPerfilPrestador = new Intent(MainActivity.this, PerfilPrestadorActivity.class);
+                startActivity(intentVaiParaPerfilPrestador);
             }
         });
 

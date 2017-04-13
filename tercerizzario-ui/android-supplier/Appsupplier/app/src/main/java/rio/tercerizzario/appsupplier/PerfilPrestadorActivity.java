@@ -1,24 +1,23 @@
 package rio.tercerizzario.appsupplier;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import rio.tercerizzario.appsupplier.converter.PrestadorConverter;
 import rio.tercerizzario.appsupplier.modelo.Prestador;
 
-public class CadastroPrestadorActivity extends AppCompatActivity {
+public class PerfilPrestadorActivity extends AppCompatActivity {
 
-    private CadastroPrestadorHelper helper;
+    private PerfilPrestadorHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_prestador);
-        helper = new CadastroPrestadorHelper(this);
+        setContentView(R.layout.activity_perfil_prestador);
+        helper = new PerfilPrestadorHelper(this);
     }
 
     @Override
@@ -30,12 +29,17 @@ public class CadastroPrestadorActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Prestador prestador = new Prestador();
+        new BuscaPrestadorTask(this,prestador,helper).execute();
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
-                Prestador prestador = helper.pegaPrestador();
-                new EnviaPrestadorTask(this, prestador).execute(this);
-                finish();
+                Intent intentVaiParaCadastroPrestador = new Intent(PerfilPrestadorActivity.this, CadastroPrestadorActivity.class);
+                startActivity(intentVaiParaCadastroPrestador);
                 break;
         }
 

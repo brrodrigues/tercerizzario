@@ -23,13 +23,11 @@ public class EnviaPrestadorTask extends AsyncTask {
         this.prestador = prestador;
     }
 
-
     @Override
     protected Object doInBackground(Object[] params) {
 
         PrestadorConverter conversor = new PrestadorConverter();
         String json = conversor.converteParaJson(this.prestador);
-
 
         WebClient client = new WebClient();
         String resposta = client.post(json);

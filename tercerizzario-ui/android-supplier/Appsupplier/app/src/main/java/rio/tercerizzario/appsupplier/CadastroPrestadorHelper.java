@@ -31,13 +31,13 @@ public class CadastroPrestadorHelper {
         //campoNota = (RatingBar) activity.findViewById(R.id.cadastro_prestador_nota);
     }
 
-
-    public Prestador pegaPrestador() {
+    public Prestador pegaPrestador( ) {
         Prestador prestador = new Prestador();
         prestador.setNome(campoNome.getText().toString());
         prestador.setTelefone(campoTelefone.getText().toString());
         prestador.setEndereco(campoEndereco.getText().toString());
         prestador.setEmail(campoEmail.getText().toString());
+        prestador.setRg(campoRg.getText().toString());
         //prestador.setNota(Double.valueOf(campoNota.getProgress()));
         return prestador;
     }
