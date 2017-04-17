@@ -12,17 +12,17 @@ import java.util.Scanner;
  */
 
 public class WebClient {
+
     public String post (String json) {
         try {
             URL url = new URL("http://45.55.14.13:8080/suppliers");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
+            connection.setRequestProperty("Content-type","application/json");
+            connection.setRequestProperty("Accept","application/json");
 
             connection.setDoOutput(true);
             PrintStream output = new PrintStream(connection.getOutputStream());
             output.println(json);
-            connection.setRequestProperty("Content-type","application/json");
-            connection.setRequestProperty("Accept","application/json");
             connection.connect();
             Scanner sacanner = new Scanner(connection.getInputStream());
 
@@ -35,15 +35,23 @@ public class WebClient {
     }
 
 
-    public void get (String json) {
+    public String get (String email) {
         try {
-            URL url = new URL("http://45.55.14.13:8080/suppliers");
+            URL url = new URL("http://45.55.14.13:8080/suppliers/search/byEmail?email=psymitch@gmail.com");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty("Content-type","application/json");
+            connection.setRequestProperty("Accept","application/json");
+            connection.connect();
+            Scanner sacanner = new Scanner(connection.getInputStream());
+            String resposta = sacanner.next();
+            return resposta;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
 }

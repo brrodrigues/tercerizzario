@@ -42,6 +42,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -80,14 +81,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setTitle("Login");
 
         LoginButton fbLogin = (LoginButton) findViewById(R.id.login_button);
+        fbLogin.setReadPermissions("email");
 
-/*        fbLogin.setReadPermissions("email");
-
-        fbLogin.registerCallback(callbackManager , new FacebookCallback<LoginResult>() {
+/*        fbLogin.registerCallback(callbackManager , new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //Intent IntentVaiPraActivityPrincipal = new Intent(LoginActivity.this, MainActivity.class);
-                //startActivity(IntentVaiPraActivityPrincipal);
+                Intent IntentVaiPraActivityPrincipal = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(IntentVaiPraActivityPrincipal);
             }
 
             @Override
