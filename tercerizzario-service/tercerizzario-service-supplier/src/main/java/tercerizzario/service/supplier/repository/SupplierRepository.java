@@ -9,13 +9,13 @@ import java.util.Collection;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import tercerizzario.service.supplier.entity.Supplier;
+import tercerizzario.service.supplier.domain.Supplier;
 
 /**
  *
  * @author bruno
  */
-public interface DefaultRepository extends MongoRepository<Supplier, String> {
+public interface SupplierRepository extends MongoRepository<Supplier, String> {
 
     //Supports native JSON query string
     @Query("{email:'?0'}")

@@ -7,6 +7,9 @@ zuul:
         profession-resource:
             path: /professions/**
             url: http://localhost:7211/professions
+        location-resource:
+            path: /locator/**
+            url: http://localhost:7311/locator
 ribbon:
     eureka:
         enabled: false
@@ -24,6 +27,9 @@ supplier-resource:
 profession-resource:
     ribbon:
         listOfServers: http://localhost:7211/
+locator-resource:
+    ribbon:
+        listOfServers: http://localhost:7311/
         
 logging:
   level:

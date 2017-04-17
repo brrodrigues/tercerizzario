@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import tercerizzario.service.supplier.entity.Supplier;
-import tercerizzario.service.supplier.repository.DefaultRepository;
+import tercerizzario.service.supplier.domain.Supplier;
+import tercerizzario.service.supplier.repository.SupplierRepository;
 
 /**
  *
@@ -36,7 +36,7 @@ public class SupplierService {
     private DiscoveryClient client;
 
     @Autowired
-    private DefaultRepository defaultRepository;
+    private SupplierRepository defaultRepository;
 
     @RequestMapping(method = {RequestMethod.GET})
     public List<Supplier> getSuppliers() {
@@ -49,7 +49,7 @@ public class SupplierService {
 
     @RequestMapping(method = {RequestMethod.POST})
     public Supplier createOne(@RequestBody Supplier supplier) {
-        return defaultRepository.insert(supplier);
+        return defaultRepository.save(supplier);
     }
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
@@ -64,7 +64,7 @@ public class SupplierService {
 
     @RequestMapping(method = {RequestMethod.PUT})
     public Supplier updateSupplier(@RequestBody Supplier supplier) {
-        return defaultRepository.insert(supplier);
+        return defaultRepository.save(supplier);
     }
 //
 

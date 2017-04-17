@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tercerizzario.service.supplier.entity;
+package tercerizzario.service.supplier.domain;
 
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
@@ -20,6 +20,7 @@ public class Supplier implements Serializable {
     @Id
     private String id;
     private String name;
+    private double[] location;
     private String cellPhone;
     private String address;
     @Indexed(unique = false)
@@ -27,6 +28,15 @@ public class Supplier implements Serializable {
     private String document;
 
     public Supplier() {
+    }
+
+    public Supplier(String name, double[] location, String cellPhone, String address, String email, String document) {
+        this.name = name;
+        this.location = location;
+        this.cellPhone = cellPhone;
+        this.address = address;
+        this.email = email;
+        this.document = document;
     }
 
     public String getId() {
@@ -43,6 +53,14 @@ public class Supplier implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double[] getLocation() {
+        return location;
+    }
+
+    public void setLocation(double[] location) {
+        this.location = location;
     }
 
     public String getCellPhone() {
