@@ -14,10 +14,10 @@ import org.junit.runner.RunWith;
  * @author bruno
  */
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "classpath:supplierrepository.integration",
+@CucumberOptions(features = "classpath:api.integration",
         tags = {"@restApiIntegration", "~@ignore"},
         plugin = {"html:target/cucumber-report/supplierInvetoryIntegration",
             "json:target/cucumber-report/supplierInvetoryIntegration.json"})
-public class SupplierInventoryIntegrationTest {
+public class APITest {
 
 }
