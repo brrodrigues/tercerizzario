@@ -9,6 +9,7 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.junit.runner.RunWith;
@@ -31,6 +32,7 @@ import tercerizzario.service.supplier.SupplierApp;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import tercerizzario.service.supplier.domain.Supplier;
 
 /**
  *
@@ -45,6 +47,8 @@ public class SupplierResourceRestCallSteps {
     private volatile WebApplicationContext webApplicationContext;
 
     private volatile MockMvc mockMvc;
+    
+    private List<Supplier> suppliers = new ArrayList<>();
 
     private ResultActions resultActions;
 
@@ -53,6 +57,12 @@ public class SupplierResourceRestCallSteps {
     @Given("^Iniciado o servidor e subido o contexto$")
     public void iniciadoOServidorESubindoOContexto() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+    }
+
+    @Given("^Lista de prestadores:$")
+    public void listaDePrestadoresExistentes(DataTable dataTable) {
+        List<Supplier> jsonMap = dataTable.asList(Supplier.class);
+        suppliers.addAll(jsonMap);
     }
 
     @Given("^O seguinte cabecalho do header sera enviado para a requisicao :$")
