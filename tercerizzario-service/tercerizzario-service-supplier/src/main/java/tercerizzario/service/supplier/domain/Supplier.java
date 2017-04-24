@@ -20,7 +20,7 @@ public class Supplier implements Serializable {
     @Id
     private String id;
     private String name;
-    private double[] location;
+    private Double[] location;
     private String cellPhone;
     private String address;
     @Indexed(unique = false)
@@ -30,7 +30,9 @@ public class Supplier implements Serializable {
     public Supplier() {
     }
 
-    public Supplier(String name, double[] location, String cellPhone, String address, String email, String document) {
+    
+    public Supplier(String id,String name, Double[] location, String cellPhone, String address, String email, String document) {
+        this.id = id;
         this.name = name;
         this.location = location;
         this.cellPhone = cellPhone;
@@ -55,11 +57,11 @@ public class Supplier implements Serializable {
         this.name = name;
     }
 
-    public double[] getLocation() {
+    public Double[] getLocation() {
         return location;
     }
 
-    public void setLocation(double[] location) {
+    public void setLocation(Double[] location) {
         this.location = location;
     }
 
@@ -93,6 +95,11 @@ public class Supplier implements Serializable {
 
     public void setDocument(String document) {
         this.document = document;
+    }
+
+    @Override
+    public String toString() {
+        return "Supplier{" + "id=" + id + ", name=" + name + ", location=" + location + ", cellPhone=" + cellPhone + ", address=" + address + ", email=" + email + ", document=" + document + '}';
     }
 
 }

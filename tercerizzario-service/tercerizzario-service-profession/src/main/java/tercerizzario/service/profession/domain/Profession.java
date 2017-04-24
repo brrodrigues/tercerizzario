@@ -6,7 +6,7 @@
 package tercerizzario.service.profession.domain;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -18,8 +18,16 @@ public class Profession {
 
     @Id
     private String id;
-    @Indexed
+    @TextIndexed
     private String name;
+
+    public Profession() {
+    }
+
+    public Profession(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public String getId() {
         return id;

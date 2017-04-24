@@ -9,9 +9,10 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,10 +30,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import tercerizzario.service.supplier.SupplierApp;
+import org.springframework.test.context.ActiveProfiles;
+import tercerizzario.service.supplier.domain.Supplier;
+import tercerizzario.service.supplier.repository.SupplierRepository;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import tercerizzario.service.supplier.domain.Supplier;
 
 /**
  *
@@ -40,29 +43,50 @@ import tercerizzario.service.supplier.domain.Supplier;
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = SupplierApp.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class SupplierResourceRestCallSteps {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ActiveProfiles("test")
+public class ResourceRestCallSteps {
 
     @Autowired
     private volatile WebApplicationContext webApplicationContext;
 
-    private volatile MockMvc mockMvc;
-    
-    private List<Supplier> suppliers = new ArrayList<>();
+    @Autowired
+    private SupplierRepository repository;
 
+    private volatile MockMvc mockMvc;
+
+//    private List<Supplier> suppliers = new ArrayList<>();
     private ResultActions resultActions;
 
     private HttpHeaders httpHeaders = new HttpHeaders();
 
     @Given("^Iniciado o servidor e subido o contexto$")
     public void iniciadoOServidorESubindoOContexto() {
+        LOG.log(Level.INFO, "Iniciando e injetando o contexto da aplicacao para o mockMvc");
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+        LOG.log(Level.INFO, "Limpando o ergistro da base de dados");
+        repository.deleteAll();
+        LOG.log(Level.INFO, "Feito...");
     }
 
     @Given("^Lista de prestadores:$")
     public void listaDePrestadoresExistentes(DataTable dataTable) {
-        List<Supplier> jsonMap = dataTable.asList(Supplier.class);
-        suppliers.addAll(jsonMap);
+
+        List<Map<String, Object>> params = dataTable.asMaps(String.class, Object.class);
+        for (Map<String, Object> map : params) {
+            String id = (String) map.get("id");
+            String name = (String) map.get("name");
+            String longitude = (String) map.get("x");
+            String latitude = (String) map.get("y");
+            String cellPhone = (String) map.get("cellPhone");
+            String address = (String) map.get("address");
+            String email = (String) map.get("email");
+            String document = (String) map.get("document");
+            Supplier supplier = new Supplier(id, name, new Double[]{Double.valueOf(longitude), Double.valueOf(latitude)}, cellPhone, address, email, document);
+            LOG.log(Level.INFO, "populating supplier  with {0}", supplier.toString());
+            repository.save(supplier);
+        }
+
     }
 
     @Given("^O seguinte cabecalho do header sera enviado para a requisicao :$")
@@ -71,7 +95,7 @@ public class SupplierResourceRestCallSteps {
         headerNameValues.forEach((k, v) -> httpHeaders.add(k, v));
     }
 
-    @When("^requisitado via GET ([\\S]*)$")
+    @When("^requisitado via GET (.*)$")
     public void requisitadoViaGET(String resourceUri) throws Exception {
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get(resourceUri).headers(httpHeaders));
     }
@@ -119,24 +143,28 @@ public class SupplierResourceRestCallSteps {
 
     @Then("^O codigo da resposta sera (\\d*)$")
     public void oCodigoDaRespostaSera(int statusCode) throws Exception {
+        LOG.log(Level.INFO, "statusCode {0}", statusCode);
         resultActions.andExpect(status().is(statusCode));
     }
 
     @Then("^O resultado JSON sera :$")
     public void oResultadoJSONSera(String jsonString) throws Exception {
-        resultActions.andExpect(content().json(jsonString));
+        LOG.log(Level.INFO, "json result {0}", jsonString);
+        resultActions.andExpect(content().json(jsonString, true));
     }
 
     @Then("^O resultado JSON sera vazio")
     public void oResultadoJSONSeraVazio() throws Exception {
+        LOG.log(Level.INFO, "json result {0}", "[]");
         resultActions.andExpect(content().json("[]"));
     }
 
     /**
      * Should be only used to test what json should be returned!
      */
-    @Then("^O resultado da string devera ser :$")
+    @Then("^O resultado da string sera :$")
     public void oResultadoDaStringDeveraSer(String jsonString) throws Exception {
+        LOG.log(Level.INFO, "json {0}", jsonString);
         resultActions.andExpect(content().string(jsonString));
     }
 
@@ -166,4 +194,7 @@ public class SupplierResourceRestCallSteps {
     public void oSeguinteCabecalhoDaRequisicaoConteraComValor(String headerName, String headerValue) throws Exception {
         assertEquals("Cabecalho da requisicao nao presente com o valor  : " + headerName + "=" + headerValue, headerValue, resultActions.andReturn().getResponse().getHeaderValue(headerName));
     }
+
+    private static final Logger LOG = Logger.getLogger(ResourceRestCallSteps.class.getName());
+
 }

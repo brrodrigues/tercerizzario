@@ -41,10 +41,13 @@ public class SupplierService {
     @RequestMapping(method = {RequestMethod.GET})
     public List<Supplier> getSuppliers() {
         ServiceInstance localServiceInstance = client.getLocalServiceInstance();
-        LOG.log(Level.INFO, "Call /suppliers from {0}:{1} ", new Object[]{localServiceInstance.getHost(), localServiceInstance
+        LOG.log(Level.INFO, "Call /suppliers from server {0}:{1} ", new Object[]{localServiceInstance.getHost(), localServiceInstance
             .getPort()});
 
-        return defaultRepository.findAll();
+        List<Supplier> findAll = defaultRepository.findAll();
+        
+        return findAll;
+        
     }
 
     @RequestMapping(method = {RequestMethod.POST})
