@@ -16,7 +16,7 @@ import tercerizzario.service.profession.domain.Profession;
  */
 public interface DefaultRepository extends MongoRepository<Profession, String> {
     
-    @Query("{name : { $regex: ?0, $options: 'i'}}")
+    @Query("{name : { $regex: '?0', $options: 'i'}}")
     public List<Profession> findSimilarByName(String name);
 
 }

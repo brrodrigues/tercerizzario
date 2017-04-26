@@ -51,17 +51,18 @@ public class SupplierService {
     }
 
     @RequestMapping(method = {RequestMethod.POST})
-    public Supplier createOne(@RequestBody Supplier supplier) {
+    public Supplier saveSupplier(@RequestBody Supplier supplier) {
         return defaultRepository.save(supplier);
     }
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
-    public Supplier getOne(@PathVariable(value = "id") String id) {
+    public Supplier getSupplierOne(@PathVariable(value = "id") String id) {
         return defaultRepository.findOne(id);
     }
 
     @RequestMapping(value = "/search/byEmail", method = {RequestMethod.GET})
-    public Supplier findByEmail(@RequestParam(name = "email", required = true) String email) {
+    public Supplier findSupplierByEmail(@RequestParam(name = "email", required = true) String email) {
+        
         return defaultRepository.findFirstByEmail(email);
     }
 
@@ -72,7 +73,7 @@ public class SupplierService {
 //
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.DELETE})
-    public ResponseEntity delete(@PathVariable(value = "id") String id) {
+    public ResponseEntity deleteSupplier(@PathVariable(value = "id") String id) {
         defaultRepository.delete(id);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }

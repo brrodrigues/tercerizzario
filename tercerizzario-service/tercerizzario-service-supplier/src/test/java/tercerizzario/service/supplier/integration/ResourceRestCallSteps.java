@@ -29,8 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import tercerizzario.service.supplier.SupplierApp;
 import org.springframework.test.context.ActiveProfiles;
+import tercerizzario.service.supplier.Startup;
 import tercerizzario.service.supplier.domain.Supplier;
 import tercerizzario.service.supplier.repository.SupplierRepository;
 import static org.hamcrest.Matchers.hasSize;
@@ -42,7 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author bruno
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = SupplierApp.class)
+@ContextConfiguration(classes = Startup.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class ResourceRestCallSteps {
@@ -55,7 +55,6 @@ public class ResourceRestCallSteps {
 
     private volatile MockMvc mockMvc;
 
-//    private List<Supplier> suppliers = new ArrayList<>();
     private ResultActions resultActions;
 
     private HttpHeaders httpHeaders = new HttpHeaders();
@@ -64,20 +63,20 @@ public class ResourceRestCallSteps {
     public void iniciadoOServidorESubindoOContexto() {
         LOG.log(Level.INFO, "Iniciando e injetando o contexto da aplicacao para o mockMvc");
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-        LOG.log(Level.INFO, "Limpando o ergistro da base de dados");
+        LOG.log(Level.INFO, "Limpando registros na base de dados");
         repository.deleteAll();
         LOG.log(Level.INFO, "Feito...");
     }
 
-    @Given("^Lista de prestadores:$")
+    @Given("^Conjunto de elementos:$")
     public void listaDePrestadoresExistentes(DataTable dataTable) {
 
         List<Map<String, Object>> params = dataTable.asMaps(String.class, Object.class);
         for (Map<String, Object> map : params) {
             String id = (String) map.get("id");
             String name = (String) map.get("name");
-            String longitude = (String) map.get("x");
-            String latitude = (String) map.get("y");
+            String longitude = (String) map.get("longitude");
+            String latitude = (String) map.get("latitude");
             String cellPhone = (String) map.get("cellPhone");
             String address = (String) map.get("address");
             String email = (String) map.get("email");
@@ -95,7 +94,7 @@ public class ResourceRestCallSteps {
         headerNameValues.forEach((k, v) -> httpHeaders.add(k, v));
     }
 
-    @When("^requisitado via GET (.*)$")
+    @When("^requisitado via GET ([^\"]*)$")
     public void requisitadoViaGET(String resourceUri) throws Exception {
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get(resourceUri).headers(httpHeaders));
     }

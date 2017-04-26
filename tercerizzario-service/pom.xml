@@ -11,14 +11,14 @@
     <modules>
         <module>tercerizzario-service-supplier</module>
         <module>tercerizzario-service-server</module>
-        <module>tercerizzario-gateway</module>
-        <module>service-locator</module>
+        <module>tercerizzario-service-gateway</module>
         <module>tercerizzario-service-profession</module>
+        <module>tercerizzario-service-locator</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
+        <version>1.5.3.RELEASE</version>
         <relativePath/>
     </parent>
     <properties>
@@ -40,6 +40,10 @@
             <artifactId>slf4j-log4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zuul</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>

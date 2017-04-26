@@ -86,7 +86,7 @@ public class ResourceRestCallSteps {
         headerNameValues.forEach((k, v) -> httpHeaders.add(k, v));
     }
 
-    @When("^requisitado via GET \"([^\"]*)\"$")
+    @When("^requisitado via GET ([^\"]*)$")
     public void requisitadoViaGET(String resourceUri) throws Exception {
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get(resourceUri).headers(httpHeaders));
     }

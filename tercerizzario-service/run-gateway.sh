@@ -5,7 +5,7 @@ NUM_ARGS=$#
 PROJECT_NAME="gateway"
 UPPER_PROJECT_NAME=${PROJECT_NAME^^}
 EUREKA_SERVER_PATH=/home/appuser/app/tercerizzario/tercerizzario-service
-APPLICATION_NAME="tercerizzario-${PROJECT_NAME}"
+APPLICATION_NAME="tercerizzario-service-${PROJECT_NAME}"
 LOG_APPLICATION="$APPLICATION_NAME.log"
 LOG_COMPILE_MAVEN="${APPLICATION_NAME}_mvn_compile.log"
 
