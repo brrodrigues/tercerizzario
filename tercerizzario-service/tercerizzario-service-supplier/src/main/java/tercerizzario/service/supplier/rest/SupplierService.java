@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import tercerizzario.service.supplier.domain.Supplier;
 import tercerizzario.service.supplier.repository.SupplierRepository;
-
+import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 /**
  *
  * @author bruno

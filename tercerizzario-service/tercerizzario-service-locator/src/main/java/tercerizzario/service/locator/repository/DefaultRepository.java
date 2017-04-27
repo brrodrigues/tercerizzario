@@ -6,10 +6,10 @@
 package tercerizzario.service.locator.repository;
 
 import java.util.List;
-import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
-import tercerizzario.service.locator.domain.proxy.Supplier;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 
 /**
  *
@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface DefaultRepository extends MongoRepository<Supplier, String> {
     
-    public List<Supplier> findByLocationNear(Point point, Distance distance);
+    @Query(value = "{ 'location' : { '$near' : ['point.x', 'point.y'], '$maxDistance' : 'distance'}}")
+    public List<Supplier> findByLocationNear(Point point, double distance);
     
 }

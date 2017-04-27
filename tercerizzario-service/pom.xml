@@ -8,19 +8,20 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     
-    <modules>
-        <module>tercerizzario-service-supplier</module>
-        <module>tercerizzario-service-server</module>
-        <module>tercerizzario-service-gateway</module>
-        <module>tercerizzario-service-profession</module>
-        <module>tercerizzario-service-locator</module>
-    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.3.RELEASE</version>
         <relativePath/>
     </parent>
+    <modules>
+        <module>tercerizzario-service-supplier</module>
+        <module>tercerizzario-service-server</module>
+        <module>tercerizzario-service-gateway</module>
+        <module>tercerizzario-service-profession</module>
+        <module>tercerizzario-service-locator</module>
+        <module>tercerizzario-commons-lib</module>
+    </modules>
     <properties>
         <java.version>8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -35,15 +36,16 @@
     </properties>
     
     <dependencies>
+<!--        <dependency>
+            <groupId>tercerizzario</groupId>
+            <artifactId>tercerizzario-commons-lib</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>-->
         <!--        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>

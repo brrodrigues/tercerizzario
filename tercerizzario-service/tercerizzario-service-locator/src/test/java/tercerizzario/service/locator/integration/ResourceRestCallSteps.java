@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tercerizzario.service.supplier.integration;
+package tercerizzario.service.locator.integration;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
@@ -30,11 +30,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
-import tercerizzario.service.supplier.Startup;
-import tercerizzario.service.supplier.repository.SupplierRepository;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import tercerizzario.service.locator.Startup;
+import tercerizzario.service.locator.repository.DefaultRepository;
 import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 
 /**
@@ -51,7 +51,7 @@ public class ResourceRestCallSteps {
     private volatile WebApplicationContext webApplicationContext;
 
     @Autowired
-    private SupplierRepository repository;
+    private DefaultRepository repository;
 
     private volatile MockMvc mockMvc;
 
@@ -63,27 +63,29 @@ public class ResourceRestCallSteps {
     public void iniciadoOServidorESubindoOContexto() {
         LOG.log(Level.INFO, "Iniciando e injetando o contexto da aplicacao para o mockMvc");
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-        LOG.log(Level.INFO, "Limpando registros na base de dados");
+        LOG.log(Level.INFO, "Limpando o ergistro da base de dados");
         repository.deleteAll();
         LOG.log(Level.INFO, "Feito...");
     }
 
-    @Given("^Conjunto de elementos:$")
+    @Given("^Conjunto de elementos :$")
     public void listaDePrestadoresExistentes(DataTable dataTable) {
 
-        List<Map<String, Object>> params = dataTable.asMaps(String.class, Object.class);
-        for (Map<String, Object> map : params) {
-            String id = (String) map.get("id");
-            String name = (String) map.get("name");
-            String longitude = (String) map.get("longitude");
-            String latitude = (String) map.get("latitude");
-            String cellPhone = (String) map.get("cellPhone");
-            String address = (String) map.get("address");
-            String email = (String) map.get("email");
-            String document = (String) map.get("document");
+        List<Map<String, String>> asMaps = dataTable.asMaps(String.class, String.class);
+        for (Map<String, String> entry : asMaps) {
+            String id = entry.get("id");
+            String name = entry
+                    .get("name");
+            String longitude = entry.get("longitude");
+            String latitude = entry.get("latitude");
+            String cellPhone = entry.get("cellPhone");
+            String address = entry.get("address");
+            String email = entry.get("email");
+            String document = entry.get("document");
+
             Supplier supplier = new Supplier(id, name, new Double[]{Double.valueOf(longitude), Double.valueOf(latitude)}, cellPhone, address, email, document);
-            LOG.log(Level.INFO, "populating supplier  with {0}", supplier.toString());
             repository.save(supplier);
+
         }
 
     }
@@ -106,6 +108,7 @@ public class ResourceRestCallSteps {
 
     @When("^requisitado via PUT (.*) com formato json :$")
     public void requisitadoViaPUTComFormatoJSON(String resourceUri, String jsonData) throws Throwable {
+        LOG.log(Level.INFO, "resourceURI {0} {1}", new Object[]{resourceUri, jsonData});
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put(resourceUri).contentType(MediaType.APPLICATION_JSON) //
                 .content(jsonData.getBytes()).headers(httpHeaders));
     }
@@ -116,8 +119,9 @@ public class ResourceRestCallSteps {
                 .headers(httpHeaders));
     }
 
-    @When("^requisitado via POST (.*) com formato json:$")
+    @When("^requisitado via POST (.*) com formato json :$")
     public void requisitadoViaPOSTComFormatoJSON(String resourceUri, String jsonData) throws Exception {
+
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(resourceUri).contentType(MediaType.APPLICATION_JSON) //
                 .content(jsonData.getBytes()).headers(httpHeaders));
     }
@@ -160,6 +164,9 @@ public class ResourceRestCallSteps {
 
     /**
      * Should be only used to test what json should be returned!
+     *
+     * @param jsonString
+     * @throws java.lang.Exception
      */
     @Then("^O resultado da string sera :$")
     public void oResultadoDaStringDeveraSer(String jsonString) throws Exception {

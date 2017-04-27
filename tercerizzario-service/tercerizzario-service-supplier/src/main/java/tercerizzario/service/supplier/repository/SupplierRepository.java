@@ -8,8 +8,7 @@ package tercerizzario.service.supplier.repository;
 import java.util.Collection;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-
-import tercerizzario.service.supplier.domain.Supplier;
+import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 
 /**
  *
