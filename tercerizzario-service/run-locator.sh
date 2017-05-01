@@ -2,7 +2,7 @@
 
 NUM_ARGS=$#
 
-PROJECT_NAME="service-supplier"
+PROJECT_NAME="service-locator"
 APPLICATION_PATH=/home/appuser/app/tercerizzario/tercerizzario-service
 APPLICATION_NAME="tercerizzario-${PROJECT_NAME}"
 LOG_APPLICATION="$APPLICATION_NAME.log"
