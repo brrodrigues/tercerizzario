@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import tercerizzario.service.locator.repository.DefaultRepository;
 import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
+import tercerizzario.service.locator.repository.CustomRepository;
 
 /**
  *
@@ -28,18 +28,16 @@ import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 public class LocatorService {
 
     @Autowired
-    private DefaultRepository customRepository;
+    private CustomRepository customRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Supplier> findByLocationNear(@RequestParam(value = "x") Double longitudeX, @RequestParam(value = "y") Double latitudeY, @RequestParam(value = "z") Double distanceZ) {
         LOG.log(Level.INFO, "GET {0} ", new Object[]{"/locator"});
 
         Point point = new Point(longitudeX, latitudeY);
-        Distance distance = new Distance(distanceZ, Metrics.KILOMETERS);
-
+        Distance distance = new Distance(distanceZ, Metrics.NEUTRAL);
         LOG.log(Level.INFO, "Value {0} {1}", new Object[]{distance.getValue(), distance.getMetric()});
-
-        return customRepository.findByLocationNear(point, distanceZ);
+        return customRepository.findCustomLocationNear(longitudeX, latitudeY, distanceZ);
 
     }
     private static final Logger LOG = Logger.getLogger(LocatorService.class.getName());

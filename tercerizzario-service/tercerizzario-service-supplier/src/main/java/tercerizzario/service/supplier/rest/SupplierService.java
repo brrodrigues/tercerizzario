@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tercerizzario.service.supplier.repository.SupplierRepository;
 import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
+
 /**
  *
  * @author bruno
@@ -44,9 +45,9 @@ public class SupplierService {
             .getPort()});
 
         List<Supplier> findAll = defaultRepository.findAll();
-        
+
         return findAll;
-        
+
     }
 
     @RequestMapping(method = {RequestMethod.POST})
@@ -61,15 +62,15 @@ public class SupplierService {
 
     @RequestMapping(value = "/search/byEmail", method = {RequestMethod.GET})
     public Supplier findSupplierByEmail(@RequestParam(name = "email", required = true) String email) {
-        
+
         return defaultRepository.findFirstByEmail(email);
     }
 
     @RequestMapping(method = {RequestMethod.PUT})
-    public Supplier updateSupplier(@RequestBody Supplier supplier) {
+    public Supplier updateLocationSupplier(@RequestBody Supplier supplier) {
         return defaultRepository.save(supplier);
     }
-//
+
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.DELETE})
     public ResponseEntity deleteSupplier(@PathVariable(value = "id") String id) {

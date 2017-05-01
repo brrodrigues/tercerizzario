@@ -17,12 +17,13 @@ import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 public interface SupplierRepository extends MongoRepository<Supplier, String> {
 
     //Supports native JSON query string
-    @Query("{email:'?0'}")
+    @Query(value = "{email:'?0'}", fields = "{id : 1, name : 1, email : 1, cellPhone : 1, address : 1, document : 1}")
     public Supplier findCustomByEmail(String email);
-    
+
+    @Query(fields = "{id : 1, name : 1, email : 1, cellPhone : 1, address : 1, document : 1}")
     public Collection<Supplier> findByName(String name);
 
-    public Collection<Supplier> findByAddress(String address);
-
+//    @Query(fields = "{id : 1, name : 1, email : 1, cellPhone : 1, address : 1, document : 1}")
     public Supplier findFirstByEmail(String email);
+
 }

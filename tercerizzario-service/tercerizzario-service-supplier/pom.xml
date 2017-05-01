@@ -17,15 +17,15 @@
     <properties>
         <start-class>tercerizzario.service.supplier.Startup</start-class>
     </properties>
-    <!--<dependencyManagement>-->
-    <dependencies> 
+    
+    <dependencies>
         <dependency>
             <groupId>tercerizzario</groupId>
             <artifactId>tercerizzario-commons-lib</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>   
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
-    <!--</dependencyManagement>-->
     
     <description>Provider supplier microservice</description>
 </project>

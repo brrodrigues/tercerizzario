@@ -5,13 +5,15 @@
  */
 package tercerizzario.service.locator.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.List;
 import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 
 /**
  *
  * @author bruno
  */
-public interface DefaultRepository extends MongoRepository<Supplier, String>{
-    
+public interface CustomRepository {
+
+    List<Supplier> findCustomLocationNear(double longitude, double latitude, double distance);
+
 }

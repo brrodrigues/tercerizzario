@@ -7,31 +7,40 @@ package tercerizzario.tercerizzario.commons.lib.domain;
 
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  * @author bruno
  */
-@Document
+@Document(collection = "suppliers")
+@CompoundIndex(name = "supplier.location", def = "{location : '2dsphere'}")
 public class Supplier implements Serializable {
 
     @Id
     private String id;
     private String name;
+    @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
+//    @Indexed
+//    private GeoJsonPoint location;
+
     private Double[] location;
+//    private Double[] locations;
     private String cellPhone;
     private String address;
-    @Indexed(unique = false)
+    @TextIndexed
     private String email;
     private String document;
 
     public Supplier() {
     }
 
-    
-    public Supplier(String id,String name, Double[] location, String cellPhone, String address, String email, String document) {
+    public Supplier(String id, String name, Double[] location, String cellPhone, String address, String email, String document) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -57,9 +66,24 @@ public class Supplier implements Serializable {
         this.name = name;
     }
 
+//    public GeoJsonPoint getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(GeoJsonPoint location) {
+//        this.location = location;
+//    }
     public Double[] getLocation() {
         return location;
     }
+
+//    public Double[] getLocations() {
+//        return locations;
+//    }
+//
+//    public void setLocations(Double[] locations) {
+//        this.locations = locations;
+//    }
 
     public void setLocation(Double[] location) {
         this.location = location;

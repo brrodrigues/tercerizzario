@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  *
  * @author bruno
  */
-@Document
+@Document(collection = "professions")
 public class Profession {
 
     @Id

@@ -31,9 +31,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import tercerizzario.service.supplier.Startup;
-import tercerizzario.service.supplier.repository.SupplierRepository;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 
@@ -51,8 +53,11 @@ public class ResourceRestCallSteps {
     private volatile WebApplicationContext webApplicationContext;
 
     @Autowired
-    private SupplierRepository repository;
+    private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private MongoRepository<Supplier, String> mongoRepository;
+    
     private volatile MockMvc mockMvc;
 
     private ResultActions resultActions;
@@ -64,7 +69,7 @@ public class ResourceRestCallSteps {
         LOG.log(Level.INFO, "Iniciando e injetando o contexto da aplicacao para o mockMvc");
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
         LOG.log(Level.INFO, "Limpando registros na base de dados");
-        repository.deleteAll();
+        mongoRepository.deleteAll();
         LOG.log(Level.INFO, "Feito...");
     }
 
@@ -81,9 +86,11 @@ public class ResourceRestCallSteps {
             String address = (String) map.get("address");
             String email = (String) map.get("email");
             String document = (String) map.get("document");
-            Supplier supplier = new Supplier(id, name, new Double[]{Double.valueOf(longitude), Double.valueOf(latitude)}, cellPhone, address, email, document);
-            LOG.log(Level.INFO, "populating supplier  with {0}", supplier.toString());
-            repository.save(supplier);
+//            GeoJsonPoint point = new GeoJsonPoint(Double.parseDouble(longitude), Double.parseDouble(latitude));
+            Double[] location = new Double[]{Double.parseDouble(longitude), Double.parseDouble(latitude)};
+            Supplier supplier = new Supplier(id, name, location, cellPhone, address, email, document);
+//            LOG.log(Level.INFO, "populating supplier  with {0}", supplier.toString());
+            mongoTemplate.save(supplier);
         }
 
     }
