@@ -8,6 +8,7 @@ package tercerizzario.service.profession.rest;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -41,15 +42,15 @@ public class ProfessionService {
     public List<Profession> getSuppliers() {
 
         ServiceInstance localServiceInstance = client.getLocalServiceInstance();
-        LOG.log(Level.INFO, "Call /suppliers from server {0}:{1} ", new Object[]{localServiceInstance.getHost(), localServiceInstance
-            .getPort()});
+        LOG.log(Level.INFO, "Call {2} from server {0}:{1} ", new Object[]{localServiceInstance.getHost(), localServiceInstance
+            .getPort(), localServiceInstance.getUri().getPath()});
 
         return repository.findAll();
     }
 
-    @RequestMapping(value = "/search/findSimilarByName/{name}", method = {RequestMethod.GET})
-    public List<Profession> findProfessionSimilarByName(@PathVariable(value = "name") String name) {
-        LOG.log(Level.INFO, "call findProfessionSimilarByName {0}", name);
+    @RequestMapping(value = "/search/bySimilarName", method = {RequestMethod.GET})
+    public List<Profession> findProfessionSimilarByName(@PathParam(value = "name") String name) {
+        LOG.log(Level.INFO, "call search/bySimilarName {0}", name);
         return repository.findSimilarByName(name);
     }
 
@@ -60,10 +61,10 @@ public class ProfessionService {
 
     @RequestMapping(method = {RequestMethod.PUT})
     public Profession updateProfession(@RequestBody Profession profession) {
-        LOG.log(Level.INFO,"updateProfession {0}", profession.toString());
+        LOG.log(Level.INFO, "PUT / {0}", profession.toString());
         return repository.save(profession);
     }
-    
+
     public ResponseEntity deleteProfession(@PathVariable(value = "id") String id) {
         repository.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);

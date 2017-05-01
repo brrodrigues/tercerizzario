@@ -5,6 +5,7 @@
  */
 package tercerizzario.service.profession.integration;
 
+import com.mongodb.Mongo;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -32,6 +33,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import tercerizzario.service.profession.Startup;
 import tercerizzario.service.profession.domain.Profession;
@@ -53,6 +55,8 @@ public class ResourceRestCallSteps {
     @Autowired
     private DefaultRepository repository;
 
+    @Autowired
+    private MongoTemplate mongoTemplate;
     private volatile MockMvc mockMvc;
 
 //    private List<Supplier> suppliers = new ArrayList<>();
@@ -65,7 +69,7 @@ public class ResourceRestCallSteps {
         LOG.log(Level.INFO, "Iniciando e injetando o contexto da aplicacao para o mockMvc");
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
         LOG.log(Level.INFO, "Limpando o ergistro da base de dados");
-        repository.deleteAll();
+        mongoTemplate.dropCollection(Profession.class);
         LOG.log(Level.INFO, "Feito...");
     }
 
@@ -73,10 +77,11 @@ public class ResourceRestCallSteps {
     public void listaDePrestadoresExistentes(DataTable dataTable) {
 
         List<Profession> list = dataTable.asList(Profession.class);
-        for (Profession profession : list) {
-            LOG.log(Level.INFO, "populating  with {0}", profession.toString());
-            repository.save(profession);
-        }
+        repository.save(list);
+//        for (Profession profession : list) {
+//            LOG.log(Level.INFO, "populating  with {0}", profession.toString());
+//            mongoTemplate.save(profession);
+//        }
 
     }
 
@@ -86,7 +91,7 @@ public class ResourceRestCallSteps {
         headerNameValues.forEach((k, v) -> httpHeaders.add(k, v));
     }
 
-    @When("^requisitado via GET \"([^\"]*)\"$")
+    @When("^requisitado via GET ([^\"]*)$")
     public void requisitadoViaGET(String resourceUri) throws Exception {
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.get(resourceUri).headers(httpHeaders));
     }

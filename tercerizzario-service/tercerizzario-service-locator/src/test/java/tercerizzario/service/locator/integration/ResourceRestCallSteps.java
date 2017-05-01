@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tercerizzario.service.supplier.integration;
+package tercerizzario.service.locator.integration;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
@@ -30,14 +30,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
-import tercerizzario.service.supplier.Startup;
+import tercerizzario.service.locator.Startup;
+import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
 
 /**
  *
@@ -53,11 +53,9 @@ public class ResourceRestCallSteps {
     private volatile WebApplicationContext webApplicationContext;
 
     @Autowired
-    private MongoTemplate mongoTemplate;
-
-    @Autowired
+    @Qualifier(value = "defaultRepository")
     private MongoRepository<Supplier, String> mongoRepository;
-    
+
     private volatile MockMvc mockMvc;
 
     private ResultActions resultActions;
@@ -68,29 +66,34 @@ public class ResourceRestCallSteps {
     public void iniciadoOServidorESubindoOContexto() {
         LOG.log(Level.INFO, "Iniciando e injetando o contexto da aplicacao para o mockMvc");
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-        LOG.log(Level.INFO, "Limpando registros na base de dados");
+        LOG.log(Level.INFO, "Limpando o ergistro da base de dados");
         mongoRepository.deleteAll();
         LOG.log(Level.INFO, "Feito...");
     }
 
-    @Given("^Conjunto de elementos:$")
+    @Given("^Conjunto de elementos :$")
     public void listaDePrestadoresExistentes(DataTable dataTable) {
 
-        List<Map<String, Object>> params = dataTable.asMaps(String.class, Object.class);
-        for (Map<String, Object> map : params) {
-            String id = (String) map.get("id");
-            String name = (String) map.get("name");
-            String longitude = (String) map.get("longitude");
-            String latitude = (String) map.get("latitude");
-            String cellPhone = (String) map.get("cellPhone");
-            String address = (String) map.get("address");
-            String email = (String) map.get("email");
-            String document = (String) map.get("document");
+//        List<Supplier> asList = dataTable.asList(Supplier.class);
+//        repository.save(asList);
+        List<Map<String, String>> asMaps = dataTable.asMaps(String.class, String.class);
+        for (Map<String, String> entry : asMaps) {
+            String id = entry.get("id");
+            String name = entry
+                    .get("name");
+            String longitude = entry.get("longitude");
+            String latitude = entry.get("latitude");
+            String cellPhone = entry.get("cellPhone");
+            String address = entry.get("address");
+            String email = entry.get("email");
+            String document = entry.get("document");
+
 //            GeoJsonPoint point = new GeoJsonPoint(Double.parseDouble(longitude), Double.parseDouble(latitude));
             Double[] location = new Double[]{Double.parseDouble(longitude), Double.parseDouble(latitude)};
+
             Supplier supplier = new Supplier(id, name, location, cellPhone, address, email, document);
-//            LOG.log(Level.INFO, "populating supplier  with {0}", supplier.toString());
-            mongoTemplate.save(supplier);
+            mongoRepository.save(supplier);
+
         }
 
     }
@@ -113,6 +116,7 @@ public class ResourceRestCallSteps {
 
     @When("^requisitado via PUT (.*) com formato json :$")
     public void requisitadoViaPUTComFormatoJSON(String resourceUri, String jsonData) throws Throwable {
+        LOG.log(Level.INFO, "resourceURI {0} {1}", new Object[]{resourceUri, jsonData});
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put(resourceUri).contentType(MediaType.APPLICATION_JSON) //
                 .content(jsonData.getBytes()).headers(httpHeaders));
     }
@@ -123,8 +127,9 @@ public class ResourceRestCallSteps {
                 .headers(httpHeaders));
     }
 
-    @When("^requisitado via POST (.*) com formato json:$")
+    @When("^requisitado via POST (.*) com formato json :$")
     public void requisitadoViaPOSTComFormatoJSON(String resourceUri, String jsonData) throws Exception {
+
         resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(resourceUri).contentType(MediaType.APPLICATION_JSON) //
                 .content(jsonData.getBytes()).headers(httpHeaders));
     }
@@ -149,34 +154,47 @@ public class ResourceRestCallSteps {
 
     @Then("^O codigo da resposta sera (\\d*)$")
     public void oCodigoDaRespostaSera(int statusCode) throws Exception {
-        LOG.log(Level.INFO, "statusCode {0}", statusCode);
+        System.out.println(String.format("statusCode %s", statusCode));
         resultActions.andExpect(status().is(statusCode));
     }
 
     @Then("^O resultado JSON sera :$")
     public void oResultadoJSONSera(String jsonString) throws Exception {
-        LOG.log(Level.INFO, "json result {0}", jsonString);
+        System.out.println(String.format("JSON EXPECTED RESULT %s", jsonString));
+        System.out.println(String.format("JSON RESULT %s", resultActions.andReturn().getResponse().getContentAsString()));
+
         resultActions.andExpect(content().json(jsonString));
     }
 
     @Then("^O resultado JSON sera vazio")
     public void oResultadoJSONSeraVazio() throws Exception {
-        LOG.log(Level.INFO, "json result {0}", "[]");
+        System.out.println(String.format("json result %s", "[]"));
+        System.out.println(String.format("json result %s", resultActions.andReturn().getResponse().getContentAsString()));
         resultActions.andExpect(content().json("[]"));
     }
 
     /**
      * Should be only used to test what json should be returned!
+     *
+     * @param jsonString
+     * @throws java.lang.Exception
      */
     @Then("^O resultado da string sera :$")
     public void oResultadoDaStringDeveraSer(String jsonString) throws Exception {
-        LOG.log(Level.INFO, "json {0}", jsonString);
+        System.out.println(String.format("JSON result %s", jsonString));
         resultActions.andExpect(content().string(jsonString));
     }
 
     @Then("^O resultado devera conter (\\d*) registros $")
     public void checkResponseJsonMatch(int recordNumber) throws Exception {
+        System.out.println(String.format("count expected %s", recordNumber));
         resultActions.andExpect(jsonPath("$", hasSize(recordNumber)));
+    }
+
+    @Then("^Mostre o resultado$")
+    public void mostreOResultado() throws Exception {
+        System.out.println(String.format("O resultado da chamada %s", resultActions.andReturn().getResponse().getIncludedUrl()));
+        System.out.println(resultActions.andReturn().getResponse().getContentAsString());
     }
 
     @Then("^O resultado sera falso $")
