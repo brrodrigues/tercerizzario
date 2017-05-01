@@ -2,7 +2,7 @@
 
 NUM_ARGS=$#
 
-PROJECT_NAME="service-server"
+PROJECT_NAME="service-locator"
 APPLICATION_PATH=/home/appuser/app/tercerizzario/tercerizzario-service
 APPLICATION_NAME="tercerizzario-${PROJECT_NAME}"
 LOG_APPLICATION="$APPLICATION_NAME.log"
@@ -27,30 +27,31 @@ else
   echo "DONE"
 fi
 
-echo "COMPILING PROJECT WITH MAVEN"
+#echo "COMPILING PROJECT WITH MAVEN"
 
-cd ${APPLICATION_PATH}/$APPLICATION_NAME
+#cd ${APPLICATION_PATH}/$APPLICATION_NAME
 
-mvn package >> $LOG_COMPILE_MAVEN
+#mvn package >> $LOG_COMPILE_MAVEN
 
-COMPILED=$(grep -i 'BUILD FAILED' $LOG_COMPILE_MAVEN | wc -l)
+#COMPILED=$(grep -i 'BUILD FAILED' $LOG_COMPILE_MAVEN | wc -l)
 
-if [ "${COMPILED}x" != "0x"  ]; then
-	echo "OCURR ERROR DURING COMPILATION.."
-	echo "SEE MORE IN ${LOG_COMPILE_MAVEN}"
-	exit -1
-fi
-
-#TARGET=$(ls -a ${EUREKA_SERVER_PATH}/$APPLICATION_NAME/target/*.jar)
-#
-#if [ ! -f ${TARGET} ]; then
-#  echo "${APPLICATION_NAME} APPLICATION NOT FOUND"
-#  exit -1
+#if [ "${COMPILED}x" != "0x"  ]; then
+#	echo "OCURR ERROR DURING COMPILATION.."
+#	echo "SEE MORE IN ${LOG_COMPILE_MAVEN}"
+#	exit -1
 #fi
+
+TARGET=$(ls -a $APPLICATION_PATH/$APPLICATION_NAME/target/*.jar)
+
+if [ ! -f ${TARGET} ]; then
+  echo "${APPLICATION_NAME} APPLICATION NOT FOUND"
+  exit -1
+fi
 
 echo "STARTING ${APPLICATION_NAME}..."
 
-mvn spring-boot:run >> ${LOG_APPLICATION} &
+java -jar ${TARGET} >> ${LOG_APPLICATION} &
+#mvn spring-boot:run >> ${LOG_APPLICATION} &
 
 sleep 1
 
