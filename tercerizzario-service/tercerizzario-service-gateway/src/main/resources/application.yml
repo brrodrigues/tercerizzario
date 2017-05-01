@@ -1,3 +1,6 @@
+spring:
+    application:
+        name: gateway
 zuul:
     ignoreServices: "*"
     routes:
@@ -34,7 +37,9 @@ locator-resource:
 logging:
   level:
     ROOT: INFO
-    org.springframework.web: DEBUG        
+    org:
+        springframework:
+            web: DEBUG        
 
 endpoints:
   restart:
