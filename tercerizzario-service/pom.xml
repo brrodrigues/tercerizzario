@@ -36,7 +36,7 @@
     </properties>
     
     <dependencies>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>tercerizzario</groupId>
             <artifactId>tercerizzario-commons-lib</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -135,30 +135,28 @@
         </repository>
     </repositories>
     
-    <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
-        <plugins>
-            <!--            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.20.0</version>
-                <configuration>
-                    <dockerHost>http://127.0.0.1:2375</dockerHost>
-                    <verbose>true</verbose>
-                    <images>
-                        <image>
-                            <name>tercerizzario/service</name>
-                            <build>
-                                <dockerFile>Dockerfile</dockerFile>
-                                <assembly>
-                                    <descriptorRef>artifact</descriptorRef>
-                                </assembly>
-                            </build>
-                        </image>
-                    </images>
-                </configuration>
-            </plugin>-->
-        </plugins>
-    </build>
+    <!--    <build>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+    <plugins>-->
+    <!--            <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.20.0</version>
+        <configuration>
+            <dockerHost>http://127.0.0.1:2375</dockerHost>
+            <verbose>true</verbose>
+            <images>
+                <image>
+                    <name>tercerizzario/service</name>
+                    <build>
+                        <dockerFile>Dockerfile</dockerFile>
+                        <assembly>
+                            <descriptorRef>artifact</descriptorRef>
+                        </assembly>
+                    </build>
+                </image>
+            </images>
+        </configuration>
+    </plugin>-->
     
 </project>
