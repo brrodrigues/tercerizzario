@@ -20,7 +20,8 @@
         <module>tercerizzario-service-gateway</module>
         <module>tercerizzario-service-profession</module>
         <module>tercerizzario-service-locator</module>
-        <module>tercerizzario-commons-lib</module>
+        <module>tercerizzario-service-supplier-client</module>
+        <module>tercerizzario-service-hub-config</module>
     </modules>
     <properties>
         <java.version>8</java.version>
@@ -37,15 +38,27 @@
     
     <dependencies>
         <!--        <dependency>
-            <groupId>tercerizzario</groupId>
-            <artifactId>tercerizzario-commons-lib</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>-->
-        <!--        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>-->
+        
+        <!--Dependencia para configuracao dos registradores de serviço(provedores e clientes)-->
+        
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+            <version>1.3.0.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>

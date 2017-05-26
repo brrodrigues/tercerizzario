@@ -26,8 +26,8 @@ import tercerizzario.service.profession.repository.DefaultRepository;
  *
  * @author bruno
  */
-@RestController
-@RequestMapping("/professions")
+//@RestController
+//@RequestMapping("/professions")
 public class ProfessionService {
 
     private static final Logger LOG = Logger.getLogger(ProfessionService.class.getName());

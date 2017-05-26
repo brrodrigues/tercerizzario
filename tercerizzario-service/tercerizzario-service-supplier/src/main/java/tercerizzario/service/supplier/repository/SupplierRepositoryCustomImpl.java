@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
+import tercerizzario.service.supplier.domain.Supplier;
 
 @Qualifier
 public class SupplierRepositoryCustomImpl implements SupplierRepositoryCustom {

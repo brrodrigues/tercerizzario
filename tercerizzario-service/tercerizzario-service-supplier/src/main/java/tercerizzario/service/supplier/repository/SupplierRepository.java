@@ -8,12 +8,14 @@ package tercerizzario.service.supplier.repository;
 import java.util.Collection;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import tercerizzario.service.supplier.domain.Supplier;
 
 /**
  *
  * @author bruno
  */
+@RepositoryRestResource(path = "supplier-service")
 public interface SupplierRepository extends MongoRepository<Supplier, String> {
 
     //Supports native JSON query string

@@ -8,12 +8,14 @@ package tercerizzario.service.profession.repository;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import tercerizzario.service.profession.domain.Profession;
 
 /**
  *
  * @author bruno
  */
+@RepositoryRestResource
 public interface DefaultRepository extends MongoRepository<Profession, String> {
     
     @Query("{name : { $regex: '?0', $options: 'i'}}")

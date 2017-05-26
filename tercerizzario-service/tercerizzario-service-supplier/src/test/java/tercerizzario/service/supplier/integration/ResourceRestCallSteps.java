@@ -34,10 +34,9 @@ import tercerizzario.service.supplier.Startup;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
+import tercerizzario.service.supplier.domain.Supplier;
 
 /**
  *

@@ -6,7 +6,7 @@ spring:
            uri: mongodb://localhost:27017/tercerizzario
     
 server:
-    port: 7111
+    port: ${PORT}
     
 eureka: 
   client: 

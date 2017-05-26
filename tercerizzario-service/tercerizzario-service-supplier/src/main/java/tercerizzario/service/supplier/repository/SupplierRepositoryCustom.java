@@ -5,7 +5,8 @@
  */
 package tercerizzario.service.supplier.repository;
 
-import tercerizzario.tercerizzario.commons.lib.domain.Supplier;
+import tercerizzario.service.supplier.domain.Supplier;
+
 
 /**
  *
