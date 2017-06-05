@@ -3,4 +3,8 @@ spring:
         name: supplier-client
 ---
 application:
-    target: supplier-resource
+    target: suppliers
+---
+security:
+    basic:
+        enable: false   

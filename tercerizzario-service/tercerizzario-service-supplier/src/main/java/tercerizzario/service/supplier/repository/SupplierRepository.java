@@ -15,7 +15,7 @@ import tercerizzario.service.supplier.domain.Supplier;
  *
  * @author bruno
  */
-@RepositoryRestResource(path = "supplier-service")
+@RepositoryRestResource(path = "suppliers", collectionResourceRel = "suppliers")
 public interface SupplierRepository extends MongoRepository<Supplier, String> {
 
     //Supports native JSON query string

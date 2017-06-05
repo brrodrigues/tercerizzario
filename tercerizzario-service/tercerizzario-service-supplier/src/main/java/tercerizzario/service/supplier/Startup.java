@@ -21,4 +21,9 @@ public class Startup {
         SpringApplication.run(Startup.class, args);
     }
 
+//    @Bean
+//    @ConfigurationProperties(prefix = "app.datasource")
+//    DataSource configureDataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
 }
