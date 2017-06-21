@@ -1,11 +1,13 @@
 package rio.tercerizzario.appsupplier.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by CsGo on 31/03/2017.
  */
 
-public class Prestador {
-    private Long id;
+public class Prestador implements Serializable{
+    private String id;
     private String nome;
     private String telefone;
     private String endereco;
@@ -15,11 +17,11 @@ public class Prestador {
     private String senha;
     private Double nota;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

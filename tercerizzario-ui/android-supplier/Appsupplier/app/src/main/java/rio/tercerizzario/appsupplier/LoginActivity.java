@@ -43,6 +43,8 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 
+import rio.tercerizzario.appsupplier.modelo.Prestador;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -77,7 +79,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         setTitle("Login");
 
         LoginButton fbLogin = (LoginButton) findViewById(R.id.login_button);
@@ -104,7 +105,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         fbLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this,"Login efetuado com sucesso",Toast.LENGTH_SHORT).show();
                 Intent IntentVaiPraActivityPrincipal = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(IntentVaiPraActivityPrincipal);
             }

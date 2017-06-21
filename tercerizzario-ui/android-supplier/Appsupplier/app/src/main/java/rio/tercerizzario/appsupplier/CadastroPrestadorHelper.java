@@ -31,8 +31,8 @@ public class CadastroPrestadorHelper {
         //campoNota = (RatingBar) activity.findViewById(R.id.cadastro_prestador_nota);
     }
 
-    public Prestador pegaPrestador( ) {
-        Prestador prestador = new Prestador();
+    public Prestador pegaPrestador(Prestador prestador) {
+        //Prestador prestador = new Prestador();
         prestador.setNome(campoNome.getText().toString());
         prestador.setTelefone(campoTelefone.getText().toString());
         prestador.setEndereco(campoEndereco.getText().toString());
@@ -41,4 +41,13 @@ public class CadastroPrestadorHelper {
         //prestador.setNota(Double.valueOf(campoNota.getProgress()));
         return prestador;
     }
+
+    public void setaPrestador(Prestador prestador) {
+        campoNome.setText(prestador.getNome());
+        campoEmail.setText(prestador.getEmail());
+        campoTelefone.setText(prestador.getTelefone());
+        campoEndereco.setText(prestador.getEndereco());
+        campoRg.setText(prestador.getRg());
+    }
+
 }

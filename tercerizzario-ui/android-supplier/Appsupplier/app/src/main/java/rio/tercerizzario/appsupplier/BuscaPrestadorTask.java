@@ -1,6 +1,7 @@
 package rio.tercerizzario.appsupplier;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -19,11 +20,11 @@ public class BuscaPrestadorTask extends AsyncTask<Object,Object,String> {
     private Prestador prestador;
     private PerfilPrestadorHelper helper;
 
-    public BuscaPrestadorTask(Context context, Prestador prestador, PerfilPrestadorHelper helper){
+    public BuscaPrestadorTask(Context context, Prestador prestador) {
         this.context = context;
         this.prestador = prestador;
-        this.helper = helper;
     }
+
 
     @Override
     protected String doInBackground(Object[] params) {
@@ -36,7 +37,7 @@ public class BuscaPrestadorTask extends AsyncTask<Object,Object,String> {
     protected void onPostExecute(String resposta){
         PrestadorConverter conversor = new PrestadorConverter();
         prestador = conversor.converteParaPrestador(this.prestador,resposta.toString());
-        Toast.makeText(context, prestador.getNome(),Toast.LENGTH_SHORT).show();
+        helper = new PerfilPrestadorHelper((PerfilPrestadorActivity) this.context);
         helper.setaPrestador(prestador);
     }
 

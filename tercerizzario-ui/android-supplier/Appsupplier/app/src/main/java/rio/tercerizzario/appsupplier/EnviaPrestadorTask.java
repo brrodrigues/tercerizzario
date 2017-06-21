@@ -13,29 +13,30 @@ import rio.tercerizzario.appsupplier.modelo.Prestador;
  * Created by CsGo on 06/04/2017.
  */
 
-public class EnviaPrestadorTask extends AsyncTask {
+public class EnviaPrestadorTask extends AsyncTask<Object,Object,String> {
 
     private Context context;
     private Prestador prestador;
+    private CadastroPrestadorHelper helper;
 
-    public EnviaPrestadorTask(Context context, Prestador prestador){
+    public  EnviaPrestadorTask(Context context, Prestador prestador, CadastroPrestadorHelper helper){
         this.context = context;
         this.prestador = prestador;
+        this.helper = helper;
     }
 
     @Override
-    protected Object doInBackground(Object[] params) {
+    protected String doInBackground(Object[] params) {
 
         PrestadorConverter conversor = new PrestadorConverter();
         String json = conversor.converteParaJson(this.prestador);
 
         WebClient client = new WebClient();
         String resposta = client.post(json);
-        return null;
+        return resposta;
     }
 
     @Override
-    protected void onPostExecute(Object o){
-        //Toast.makeText(this.CadastroPrestadorActivity, o, Toast.LENGTH_SHORT).show();
+    protected void onPostExecute(String resposta){
     }
 }

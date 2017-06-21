@@ -19,12 +19,13 @@ public class WebClient {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Content-type","application/json");
             connection.setRequestProperty("Accept","application/json");
+            ///connection.setRequestMethod("PUT");
 
             connection.setDoOutput(true);
             PrintStream output = new PrintStream(connection.getOutputStream());
             output.println(json);
             connection.connect();
-            Scanner sacanner = new Scanner(connection.getInputStream());
+            Scanner scanner = new Scanner(connection.getInputStream());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -34,17 +35,21 @@ public class WebClient {
         return json;
     }
 
-
     public String get (String email) {
         try {
-            URL url = new URL("http://45.55.14.13:8080/suppliers/search/byEmail?email=psymitch@gmail.com");
+            URL url = new URL("http://45.55.14.13:8080/suppliers/search/byEmail?email="+email);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Content-type","application/json");
-            connection.setRequestProperty("Accept","application/json");
             connection.connect();
             Scanner sacanner = new Scanner(connection.getInputStream());
+
             String resposta = sacanner.next();
+            while (sacanner.hasNext()) {
+                resposta = resposta + sacanner.next();
+            }
+
             return resposta;
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

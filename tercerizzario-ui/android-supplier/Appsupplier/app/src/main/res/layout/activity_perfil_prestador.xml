@@ -14,29 +14,99 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/perfil_prestador_nome"
+        android:textColor="@color/com_facebook_blue"
+        android:textSize="19dp"
+        android:textStyle="bold"
         android:text="Nome"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
+        android:textSize="18dp"
+
+        android:textColor="@color/cardview_dark_background"
+        android:id="@+id/perfil_prestador_nome"
+        android:text="Nome"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/com_facebook_blue"
+        android:text="Email"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
+
+        android:textColor="@color/cardview_dark_background"
         android:id="@+id/perfil_prestador_email"
         android:text="Email"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/com_facebook_blue"
+        android:text="Telefone"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
+
+        android:textColor="@color/cardview_dark_background"
         android:id="@+id/perfil_prestador_telefone"
         android:text="Telefone"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/com_facebook_blue"
+        android:text="Endereço"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
+        android:textColor="@color/cardview_dark_background"
         android:id="@+id/perfil_prestador_endereco"
         android:text="Endereço"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/com_facebook_blue"
+        android:text="Rg"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
+        android:textColor="@color/cardview_dark_background"
         android:id="@+id/perfil_prestador_rg"
         android:text="Rg"/>
 

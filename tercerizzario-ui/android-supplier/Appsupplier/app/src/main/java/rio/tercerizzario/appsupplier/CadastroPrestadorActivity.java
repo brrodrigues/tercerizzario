@@ -1,11 +1,11 @@
 package rio.tercerizzario.appsupplier;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import rio.tercerizzario.appsupplier.converter.PrestadorConverter;
 import rio.tercerizzario.appsupplier.modelo.Prestador;
@@ -13,12 +13,16 @@ import rio.tercerizzario.appsupplier.modelo.Prestador;
 public class CadastroPrestadorActivity extends AppCompatActivity {
 
     private CadastroPrestadorHelper helper;
+    private Prestador prestador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_prestador);
         helper = new CadastroPrestadorHelper(this);
+        Intent intent = getIntent();
+        prestador = (Prestador) intent.getSerializableExtra("Prestador");
+        helper.setaPrestador(prestador);
     }
 
     @Override
@@ -27,14 +31,15 @@ public class CadastroPrestadorActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_cadastro_prestador, menu);
         setTitle("Perfil do Usuário");
         return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
-                Prestador prestador = helper.pegaPrestador();
-                new EnviaPrestadorTask(this, prestador).execute(this);
+                prestador = helper.pegaPrestador(prestador);
+                new EnviaPrestadorTask(this, prestador,helper).execute(this);
                 finish();
                 break;
         }

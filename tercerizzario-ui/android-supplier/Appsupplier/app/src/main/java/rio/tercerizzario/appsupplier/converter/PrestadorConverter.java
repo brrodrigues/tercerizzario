@@ -1,5 +1,6 @@
 package rio.tercerizzario.appsupplier.converter;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -16,6 +17,7 @@ public class PrestadorConverter {
         JSONStringer js = new JSONStringer();
         try {
             js.object();
+            js.key("id").value(prestador.getId());
             js.key("name").value(prestador.getNome());
             js.key("cellPhone").value(prestador.getTelefone());
             js.key("address").value(prestador.getEndereco());
@@ -31,13 +33,14 @@ public class PrestadorConverter {
 
     public Prestador converteParaPrestador(Prestador prestador, String json) {
         JSONObject js = null;
-        String nome = null;
-        //json = "{'id':'58e673a81d28ad2fb62a71e2','name':'Mitchell'}";
-        //json.replace('"', '\'');
         try {
             js = new JSONObject(json);
-            nome =  js.getString("name");
-            prestador.setNome(nome);
+            prestador.setId(js.getString("id"));
+            prestador.setNome(js.getString("name"));
+            prestador.setTelefone(js.getString("cellPhone"));
+            prestador.setEndereco(js.getString("address"));
+            prestador.setEmail(js.getString("email"));
+            prestador.setRg(js.getString("document"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
