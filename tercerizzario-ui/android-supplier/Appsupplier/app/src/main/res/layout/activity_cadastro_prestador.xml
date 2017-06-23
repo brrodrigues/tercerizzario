@@ -56,8 +56,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Endereço"
-        android:id="@+id/cadastro_prestador_endereco"/>;
+        android:hint="Rua"
+        android:id="@+id/cadastro_prestador_end_rua"/>;
 
     </android.support.design.widget.TextInputLayout>
 
@@ -68,10 +68,24 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Complemento Endereço"
-        android:id="@+id/cadastro_prestador_complemento_endereco"/>;
+        android:hint="Numero"
+        android:id="@+id/cadastro_prestador_complemento_end_numero"/>;
 
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bairro"
+            android:id="@+id/cadastro_prestador_complemento_end_bairro"/>;
+
+    </android.support.design.widget.TextInputLayout>
+
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"

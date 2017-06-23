@@ -11,6 +11,9 @@ public class Prestador implements Serializable{
     private String nome;
     private String telefone;
     private String endereco;
+    private String endRua;
+    private String endNumero;
+    private String endBairro;
     private String email;
     private String cpf;
     private String rg;
@@ -89,4 +92,27 @@ public class Prestador implements Serializable{
         this.nota = nota;
     }
 
+    public String getEndRua() {
+        return endRua;
+    }
+
+    public void setEndRua(String endRua) {
+        this.endRua = endRua;
+    }
+
+    public String getEndNumero() {
+        return endNumero;
+    }
+
+    public void setEndNumero(String endNumero) {
+        this.endNumero = endNumero;
+    }
+
+    public String getEndBairro() {
+        return endBairro;
+    }
+
+    public void setEndBairro(String endBairro) {
+        this.endBairro = endBairro;
+    }
 }
