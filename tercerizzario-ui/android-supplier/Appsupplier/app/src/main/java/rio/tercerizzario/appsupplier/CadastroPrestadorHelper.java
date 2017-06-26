@@ -56,8 +56,5 @@ public class CadastroPrestadorHelper {
         campoRg.setText(prestador.getRg());
     }
 
-    public void converteEndereco(Prestador prestador) {
-        //prestador.getEndRua()
-    }
 
 }
