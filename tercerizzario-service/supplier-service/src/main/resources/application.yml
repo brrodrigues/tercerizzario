@@ -1,0 +1,9 @@
+management:
+  context-path: /admin
+
+server:
+    port: ${PORT}
+    
+spring:
+    application:
+        name: supplier-server

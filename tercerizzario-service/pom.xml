@@ -11,17 +11,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>1.5.4.RELEASE</version>
         <relativePath/>
     </parent>
     <modules>
-        <module>tercerizzario-service-supplier</module>
-        <module>tercerizzario-service-server</module>
-        <module>tercerizzario-service-gateway</module>
-        <module>tercerizzario-service-profession</module>
-        <module>tercerizzario-service-locator</module>
-        <module>tercerizzario-service-supplier-client</module>
-        <module>tercerizzario-service-hub-config</module>
+        <module>hub-config-server</module>
+        <module>gateway-service</module>
+        <module>locator-service</module>
+        <module>profession-service</module>
+        <module>supplier-client</module>
+        <module>supplier-service</module>
+        <module>eureka-server</module>
     </modules>
     <properties>
         <java.version>8</java.version>
@@ -42,9 +42,6 @@
             <artifactId>slf4j-log4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>-->
-        
-        <!--Dependencia para configuracao dos registradores de serviço(provedores e clientes)-->
-        
         
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -148,29 +145,5 @@
             </snapshots>
         </repository>
     </repositories>
-    
-    <!--    <build>
-    <finalName>${project.artifactId}-${project.version}</finalName>
-    <plugins>-->
-    <!--            <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <version>0.20.0</version>
-        <configuration>
-            <dockerHost>http://127.0.0.1:2375</dockerHost>
-            <verbose>true</verbose>
-            <images>
-                <image>
-                    <name>tercerizzario/service</name>
-                    <build>
-                        <dockerFile>Dockerfile</dockerFile>
-                        <assembly>
-                            <descriptorRef>artifact</descriptorRef>
-                        </assembly>
-                    </build>
-                </image>
-            </images>
-        </configuration>
-    </plugin>-->
     
 </project>

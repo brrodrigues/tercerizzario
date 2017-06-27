@@ -1,0 +1,7 @@
+spring:
+    profiles:
+        active: development
+    cloud:
+        config:
+            uri: http://${CONFIG_SERVER:localhost}:8888
+    failFast: true        
