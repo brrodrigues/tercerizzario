@@ -1,6 +1,7 @@
 package rio.tercerizzario.appsupplier.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by CsGo on 31/03/2017.
@@ -19,6 +20,7 @@ public class Prestador implements Serializable{
     private String rg;
     private String senha;
     private Double nota;
+    private List<String> comentario;
 
     public String getId() {
         return id;
