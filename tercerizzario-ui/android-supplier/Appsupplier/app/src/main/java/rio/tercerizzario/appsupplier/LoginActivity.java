@@ -34,13 +34,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
+//import com.facebook.CallbackManager;
+//import com.facebook.FacebookCallback;
+//import com.facebook.FacebookException;
+//import com.facebook.FacebookSdk;
+//import com.facebook.login.LoginManager;
+//import com.facebook.login.LoginResult;
+//import com.facebook.login.widget.LoginButton;
 
 
 import rio.tercerizzario.appsupplier.modelo.Prestador;
@@ -81,8 +81,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
         setTitle("Login");
 
-        LoginButton fbLogin = (LoginButton) findViewById(R.id.login_button);
-        fbLogin.setReadPermissions("email");
+        //LoginButton fbLogin = (LoginButton) findViewById(R.id.login_button);
+        Button fbLogin = (Button) findViewById(R.id.login_button);
+        //fbLogin.setReadPermissions("email");
 
 /*        fbLogin.registerCallback(callbackManager , new FacebookCallback<LoginResult>() {
             @Override
