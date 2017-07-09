@@ -1,126 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_cadastro"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="rio.tercerizzario.appsupplier.CadastroPrestadorActivity">
+    android:layout_height="match_parent">
 
-
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_cadastro"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nome"
-        android:id="@+id/cadastro_prestador_nome"/>;
-
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        tools:context="rio.tercerizzario.appsupplier.CadastroPrestadorActivity">
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="E-mail"
-        android:id="@+id/cadastro_prestador_email"/>;
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Telefone"
-        android:id="@+id/cadastro_prestador_telefone"/>;
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Endereço"
-            android:id="@+id/cadastro_prestador_endereco"/>;
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome"
+                android:id="@+id/cadastro_prestador_nome"/>;
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Rua"
-        android:id="@+id/cadastro_prestador_end_rua"/>;
 
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Numero"
-        android:id="@+id/cadastro_prestador_complemento_end_numero"/>;
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Bairro"
-            android:id="@+id/cadastro_prestador_complemento_end_bairro"/>;
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-mail"
+                android:id="@+id/cadastro_prestador_email"/>;
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telefone"
+                android:id="@+id/cadastro_prestador_telefone"/>;
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Endereço"
+                android:id="@+id/cadastro_prestador_endereco"/>;
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rua"
+                android:id="@+id/cadastro_prestador_end_rua"/>;
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Numero"
+                android:id="@+id/cadastro_prestador_complemento_end_numero"/>;
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bairro"
+                android:id="@+id/cadastro_prestador_complemento_end_bairro"/>;
+
+        </android.support.design.widget.TextInputLayout>
 
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Rg"
-        android:id="@+id/cadastro_prestador_rg"/>;
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rg"
+                android:id="@+id/cadastro_prestador_rg"/>;
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Cpf"
-        android:id="@+id/cadastro_prestador_cpf"/>;
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cpf"
+                android:id="@+id/cadastro_prestador_cpf"/>;
 
-    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-</LinearLayout>
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="Perfil"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/cadastro_prestador_botao_endereco"
+            android:elevation="6dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+

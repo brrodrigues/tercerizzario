@@ -15,10 +15,10 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="10dp"
-        android:background="@color/com_facebook_button_background_color"
+        android:background="@color/colorPrimary"
         android:text="Perfil"
         android:textSize="25dp"
-        android:textColor="@color/com_facebook_button_login_silver_background_color_pressed"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/main_botao_perfil"
         android:elevation="6dp"/>
 

@@ -51,7 +51,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".MapaActivity" />
-        <activity android:name=".ServicosActivity"></activity>
+        <activity android:name=".ServicosActivity" />
     </application>
 
 </manifest>

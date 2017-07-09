@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import rio.tercerizzario.appsupplier.converter.PrestadorConverter;
 import rio.tercerizzario.appsupplier.modelo.Prestador;
@@ -23,6 +25,16 @@ public class CadastroPrestadorActivity extends AppCompatActivity {
         Intent intent = getIntent();
         prestador = (Prestador) intent.getSerializableExtra("Prestador");
         helper.setaPrestador(prestador);
+
+        Button botaoEndereco = (Button) findViewById(R.id.cadastro_prestador_botao_endereco);
+        botaoEndereco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentionVaiParaOMapa = new Intent(CadastroPrestadorActivity.this,MapaActivity.class);
+                startActivity(intentionVaiParaOMapa);
+            }
+        });
+
     }
 
     @Override

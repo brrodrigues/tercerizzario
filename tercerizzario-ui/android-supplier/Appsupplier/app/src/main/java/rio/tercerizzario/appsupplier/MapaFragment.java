@@ -3,6 +3,7 @@ package rio.tercerizzario.appsupplier;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
@@ -21,6 +22,6 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        
+
     }
 }
