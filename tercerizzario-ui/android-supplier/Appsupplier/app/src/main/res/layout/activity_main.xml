@@ -18,7 +18,7 @@
         android:background="@color/colorPrimary"
         android:text="Perfil"
         android:textSize="25dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="#ffffff"
         android:id="@+id/main_botao_perfil"
         android:elevation="6dp"/>
 

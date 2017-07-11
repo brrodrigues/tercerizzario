@@ -11,7 +11,7 @@ public class MapaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
-
+        setTitle("Digite seu endereço");
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction tx = manager.beginTransaction();
         tx.replace(R.id.frame_mapa, new MapaFragment());

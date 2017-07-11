@@ -16,7 +16,7 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
+        
         getMapAsync(this);
     }
 

@@ -130,13 +130,13 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
-            android:text="Perfil"
-            android:textSize="25dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:text="Endereco"
+            android:textSize="10dp"
+            android:textColor="#ffffff"
             android:id="@+id/cadastro_prestador_botao_endereco"
             android:elevation="6dp"/>
 
