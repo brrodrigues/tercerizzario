@@ -26,7 +26,7 @@ public class CadastroPrestadorHelper {
         campoTelefone = (EditText) activity.findViewById(R.id.cadastro_prestador_telefone);
         campoEmail = (EditText) activity.findViewById(R.id.cadastro_prestador_email);
         campoEndRua = (EditText) activity.findViewById(R.id.cadastro_prestador_end_rua);
-        campoEndereco = (EditText) activity.findViewById(R.id.cadastro_prestador_endereco);
+        campoEndereco = (EditText) activity.findViewById(R.id.mapa_entrada_busca_endereco);
         campoEndNumero = (EditText) activity.findViewById(R.id.cadastro_prestador_complemento_end_numero);
         campoEndBairro = (EditText) activity.findViewById(R.id.cadastro_prestador_complemento_end_bairro);
         campoRg = (EditText) activity.findViewById(R.id.cadastro_prestador_rg);
@@ -53,7 +53,7 @@ public class CadastroPrestadorHelper {
         campoNome.setText(prestador.getNome());
         campoEmail.setText(prestador.getEmail());
         campoTelefone.setText(prestador.getTelefone());
-        campoEndereco.setText(prestador.getEndereco());
+        //campoEndereco.setText(prestador.getEndereco());
         campoEndRua.setText(prestador.getEndRua());
         campoEndNumero.setText(prestador.getEndNumero());
         campoEndBairro.setText(prestador.getEndBairro());

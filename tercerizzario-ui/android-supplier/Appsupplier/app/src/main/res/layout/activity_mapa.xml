@@ -15,7 +15,7 @@
         map:uiCompass="false"/>
 
     <AutoCompleteTextView
-        android:id="@+id/searchView1"
+        android:id="@+id/mapa_entrada_busca_endereco"
         android:layout_width="315sp"
         android:layout_height="45sp"
         android:layout_alignParentLeft="true"
@@ -28,7 +28,7 @@
     </AutoCompleteTextView>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/mapa_botao_busca_endereco"
         android:layout_width="38dp"
         android:layout_height="35dp"
         android:layout_alignBaseline="@+id/searchView1"
