@@ -41,7 +41,7 @@ public class CadastroPrestadorHelper {
         prestador.setTelefone(campoTelefone.getText().toString());
         prestador.setEmail(campoEmail.getText().toString());
         prestador.setRg(campoRg.getText().toString());
-        prestador.setEndereco(campoEndereco.getText().toString());
+        //prestador.setEndereco(campoEndereco.getText().toString());
         prestador.setEndRua(campoEndRua.getText().toString());
         prestador.setEndNumero(campoEndNumero.getText().toString());
         prestador.setEndBairro(campoEndBairro.getText().toString());

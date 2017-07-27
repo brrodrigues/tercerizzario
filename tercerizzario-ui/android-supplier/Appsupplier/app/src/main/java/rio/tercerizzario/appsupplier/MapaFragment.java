@@ -1,8 +1,11 @@
 package rio.tercerizzario.appsupplier;
 
+import android.app.Activity;
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,19 +27,32 @@ import rio.tercerizzario.appsupplier.modelo.Prestador;
 
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
-    private Prestador prestador;
+    private OnItemSelectedListener listener;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
         getMapAsync(this);
+    }
+
+    public interface OnItemSelectedListener {
+        public void onItemSelected(String link);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnItemSelectedListener) {
+            listener = (OnItemSelectedListener) context;
+        } else {
+            throw new ClassCastException();
+        }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        LatLng posicaoEntrada = pegaCoordenadaDoEndereco("Rau Barao do bom retiro 942, engenho novo,rio de janeiro");
+        LatLng posicaoEntrada = pegaCoordenadaDoEndereco("Rua Barao do bom retiro 942, engenho novo,rio de janeiro");
         if (posicaoEntrada != null){
             MarkerOptions marcador = new MarkerOptions();
             marcador.position(posicaoEntrada);

@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MapaActivity extends AppCompatActivity {
+public class MapaActivity extends AppCompatActivity implements MapaFragment.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,5 +17,10 @@ public class MapaActivity extends AppCompatActivity {
         tx.replace(R.id.frame_mapa, new MapaFragment());
         tx.commit();
 
+    }
+
+    @Override
+    public void onItemSelected(String link) {
+        // Código que interague com outros componente, inclusive Fragments
     }
 }
