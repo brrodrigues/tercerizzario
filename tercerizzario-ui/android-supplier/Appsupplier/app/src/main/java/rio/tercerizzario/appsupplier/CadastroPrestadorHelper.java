@@ -14,24 +14,15 @@ public class CadastroPrestadorHelper {
     private final EditText campoTelefone;
     private final EditText campoEmail;
     private final EditText campoEndereco;
-    private final EditText campoEndRua;
-    private final EditText campoEndNumero;
-    private final EditText campoEndBairro;
     private final EditText campoRg;
-    private final EditText campoCpf;
 
 
     public CadastroPrestadorHelper(CadastroPrestadorActivity activity) {
         campoNome = (EditText) activity.findViewById(R.id.cadastro_prestador_nome);
         campoTelefone = (EditText) activity.findViewById(R.id.cadastro_prestador_telefone);
         campoEmail = (EditText) activity.findViewById(R.id.cadastro_prestador_email);
-        campoEndRua = (EditText) activity.findViewById(R.id.cadastro_prestador_end_rua);
-        campoEndereco = (EditText) activity.findViewById(R.id.mapa_entrada_busca_endereco);
-        campoEndNumero = (EditText) activity.findViewById(R.id.cadastro_prestador_complemento_end_numero);
-        campoEndBairro = (EditText) activity.findViewById(R.id.cadastro_prestador_complemento_end_bairro);
+        campoEndereco = (EditText) activity.findViewById(R.id.cadastro_prestador_endereco);
         campoRg = (EditText) activity.findViewById(R.id.cadastro_prestador_rg);
-        campoCpf = (EditText) activity.findViewById(R.id.cadastro_prestador_cpf);
-
         //campoNota = (RatingBar) activity.findViewById(R.id.cadastro_prestador_nota);
     }
 
@@ -41,10 +32,7 @@ public class CadastroPrestadorHelper {
         prestador.setTelefone(campoTelefone.getText().toString());
         prestador.setEmail(campoEmail.getText().toString());
         prestador.setRg(campoRg.getText().toString());
-        //prestador.setEndereco(campoEndereco.getText().toString());
-        prestador.setEndRua(campoEndRua.getText().toString());
-        prestador.setEndNumero(campoEndNumero.getText().toString());
-        prestador.setEndBairro(campoEndBairro.getText().toString());
+        prestador.setEndereco(campoEndereco.getText().toString());
         //prestador.setNota(Double.valueOf(campoNota.getProgress()));
         return prestador;
     }
@@ -53,10 +41,7 @@ public class CadastroPrestadorHelper {
         campoNome.setText(prestador.getNome());
         campoEmail.setText(prestador.getEmail());
         campoTelefone.setText(prestador.getTelefone());
-        //campoEndereco.setText(prestador.getEndereco());
-        campoEndRua.setText(prestador.getEndRua());
-        campoEndNumero.setText(prestador.getEndNumero());
-        campoEndBairro.setText(prestador.getEndBairro());
+        campoEndereco.setText(prestador.getEndereco());
         campoRg.setText(prestador.getRg());
     }
 

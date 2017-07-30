@@ -31,9 +31,9 @@
         android:id="@+id/mapa_botao_busca_endereco"
         android:layout_width="38dp"
         android:layout_height="35dp"
-        android:layout_alignBaseline="@+id/searchView1"
-        android:layout_alignBottom="@+id/searchView1"
-        android:layout_alignRight="@+id/searchView1"
+        android:layout_alignBaseline="@+id/mapa_entrada_busca_endereco"
+        android:layout_alignBottom="@+id/mapa_entrada_busca_endereco"
+        android:layout_alignRight="@+id/mapa_entrada_busca_endereco"
         android:background="@android:color/white" />
 
 

@@ -35,7 +35,7 @@ public class PerfilPrestadorActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new BuscaPrestadorTask(this,prestador).execute();
+        //new BuscaPrestadorTask(this,prestador).execute();
         //helper.setaPrestador(prestador);
     }
 

@@ -12,15 +12,12 @@ public class Prestador implements Serializable{
     private String nome;
     private String telefone;
     private String endereco;
-    private String endRua;
-    private String endNumero;
-    private String endBairro;
     private String email;
-    private String cpf;
     private String rg;
     private String senha;
     private Double nota;
     private List<String> comentario;
+
 
     public String getId() {
         return id;
@@ -62,14 +59,6 @@ public class Prestador implements Serializable{
         this.email = email;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getRg() {
         return rg;
     }
@@ -94,27 +83,7 @@ public class Prestador implements Serializable{
         this.nota = nota;
     }
 
-    public String getEndRua() {
-        return endRua;
-    }
-
-    public void setEndRua(String endRua) {
-        this.endRua = endRua;
-    }
-
-    public String getEndNumero() {
-        return endNumero;
-    }
-
-    public void setEndNumero(String endNumero) {
-        this.endNumero = endNumero;
-    }
-
-    public String getEndBairro() {
-        return endBairro;
-    }
-
-    public void setEndBairro(String endBairro) {
-        this.endBairro = endBairro;
+    public void setComentario(List<String> comentario) {
+        this.comentario = comentario;
     }
 }
