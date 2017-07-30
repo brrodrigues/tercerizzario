@@ -96,6 +96,7 @@
             android:textColor="@color/colorPrimary"
             android:id="@+id/perfil_prestador_rg"
             android:text="Rg"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,65 +117,6 @@
             android:id="@+id/perfil_prestador_endereco"
             android:text="Endereço"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="19dp"
-            android:layout_marginTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Rua"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="6dp"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/perfil_prestador_end_rua"
-            android:text="Rua"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="19dp"
-            android:layout_marginTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Numero"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="6dp"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/perfil_prestador_end_numero"
-            android:text="Numero"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="19dp"
-            android:layout_marginTop="8dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Bairro"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="6dp"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/perfil_prestador_end_bairro"
-            android:text="Bairro"/>
 
     </LinearLayout>
 

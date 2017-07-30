@@ -51,7 +51,7 @@ public class CadastroPrestadorActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
                 prestador = helper.pegaPrestador(prestador);
-                new EnviaPrestadorTask(this, prestador,helper).execute(this);
+                //new EnviaPrestadorTask(this, prestador,helper).execute(this);
                 finish();
                 break;
         }

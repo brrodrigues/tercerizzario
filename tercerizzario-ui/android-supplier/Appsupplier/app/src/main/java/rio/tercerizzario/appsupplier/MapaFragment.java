@@ -5,6 +5,10 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -28,11 +32,20 @@ import rio.tercerizzario.appsupplier.modelo.Prestador;
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
     private OnItemSelectedListener listener;
+    private Button botaoBuscaEnd;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         getMapAsync(this);
+
+        botaoBuscaEnd.findViewById(R.id.mapa_botao_busca_endereco);
+        botaoBuscaEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
 
     public interface OnItemSelectedListener {
