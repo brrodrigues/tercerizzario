@@ -1,20 +1,31 @@
 package rio.tercerizzario.appsupplier;
 
+import android.support.v4.app.FragmentActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -31,41 +42,51 @@ import rio.tercerizzario.appsupplier.modelo.Prestador;
 
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
-    private OnItemSelectedListener listener;
+    private View mView;
+    private MapView mapView;
+    private EditText edttxt_entrada_busca_end;
     private Button botaoBuscaEnd;
+    private GoogleMap mMap;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         getMapAsync(this);
-
-        botaoBuscaEnd.findViewById(R.id.mapa_botao_busca_endereco);
-        botaoBuscaEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
-        });
-    }
-
-    public interface OnItemSelectedListener {
-        public void onItemSelected(String link);
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnItemSelectedListener) {
-            listener = (OnItemSelectedListener) context;
-        } else {
-            throw new ClassCastException();
-        }
+    public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
+        mView = layoutInflater.inflate(R.layout.activity_mapa, viewGroup,false);
+        edttxt_entrada_busca_end = (EditText) mView.findViewById(R.id.mapa_entrada_busca_endereco);
+
+        mapView = (MapView) mView.findViewById(R.id.frame_mapa);
+        mapView.onCreate(bundle);
+        mapView.onResume();
+        
+
+        botaoBuscaEnd = (Button) mView.findViewById(R.id.mapa_botao_busca_endereco);
+        botaoBuscaEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng posicaoEntrada = pegaCoordenadaDoEndereco("Rua Barao do bom retiro 942, engenho novo,rio de janeiro");
+                atualizaMapa(mMap, posicaoEntrada);
+            }
+        });
+
+        return super.onCreateView(layoutInflater, viewGroup, bundle);
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         LatLng posicaoEntrada = pegaCoordenadaDoEndereco("Rua Barao do bom retiro 942, engenho novo,rio de janeiro");
+        atualizaMapa(googleMap, posicaoEntrada);
+
+    }
+
+    private void atualizaMapa(GoogleMap googleMap, LatLng posicaoEntrada) {
         if (posicaoEntrada != null){
             MarkerOptions marcador = new MarkerOptions();
             marcador.position(posicaoEntrada);
@@ -73,7 +94,6 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
             CameraUpdate update = CameraUpdateFactory.newLatLngZoom(posicaoEntrada,17);
             googleMap.moveCamera(update);
         }
-
     }
 
     private LatLng pegaCoordenadaDoEndereco(String endereco) {
