@@ -1,5 +1,6 @@
 package rio.tercerizzario.appsupplier;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.app.Activity;
 import android.content.Context;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -42,8 +44,8 @@ import rio.tercerizzario.appsupplier.modelo.Prestador;
 
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
+    MapView mapView;
     private View mView;
-    private MapView mapView;
     private EditText edttxt_entrada_busca_end;
     private Button botaoBuscaEnd;
     private GoogleMap mMap;
@@ -60,10 +62,15 @@ public class MapaFragment extends SupportMapFragment implements OnMapReadyCallba
         mView = layoutInflater.inflate(R.layout.activity_mapa, viewGroup,false);
         edttxt_entrada_busca_end = (EditText) mView.findViewById(R.id.mapa_entrada_busca_endereco);
 
-        mapView = (MapView) mView.findViewById(R.id.frame_mapa);
+        mapView = (MapView) mView.findViewById(R.id.mapaView);
         mapView.onCreate(bundle);
         mapView.onResume();
-        
+
+        try {
+            MapsInitializer.initialize(getActivity().getApplication());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         botaoBuscaEnd = (Button) mView.findViewById(R.id.mapa_botao_busca_endereco);
         botaoBuscaEnd.setOnClickListener(new View.OnClickListener() {
